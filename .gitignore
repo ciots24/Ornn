@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Claude Code — machine-specific local settings
+.claude/settings.local.json
+
+# Installed skill files (restored from skills-lock.json)
+.agents/
+.claude/skills/
