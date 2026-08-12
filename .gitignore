@@ -7,3 +7,9 @@
 # Installed skill files (restored from skills-lock.json)
 .agents/
 .claude/skills/
+
+# Environment variables / secrets — never commit (repo is public)
+.env
+.env.local
+.env.*.local
+.env.keys
