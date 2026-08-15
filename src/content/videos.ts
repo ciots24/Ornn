@@ -25,16 +25,8 @@ export const scriptProofClips: readonly ProofClip[] = [
     poster: "/proof/ad-banner-1-poster.webp",
     width: 360,
     height: 480,
-    caption: "Live ad · script by the GPT",
+    caption: "Live ad · scripted by the GPT",
     note: "Ran on Meta. Script written by the Script Strategist, lightly edited.",
-  },
-  {
-    src: "/proof/ad-banner-2.mp4",
-    poster: "/proof/ad-banner-2-poster.webp",
-    width: 360,
-    height: 480,
-    caption: "Same offer · different angle",
-    note: "A second angle from the same GPT, so one product yields many ads.",
   },
   {
     src: "/proof/ad-payroll.mp4",
