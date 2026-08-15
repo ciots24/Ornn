@@ -331,6 +331,20 @@ export const modules = [
   },
 ] as const;
 
+/**
+ * The Ads Manager total behind every "₱100M+ in ad spend" line on this page.
+ * Left uncropped on purpose: the surrounding Ads Manager chrome and the
+ * campaign rows are what make the total checkable rather than assertable.
+ */
+export const adSpendDashboard = {
+  src: "/proof/adspend-100m.webp",
+  width: 996,
+  height: 851,
+  alt: "Meta Ads Manager campaign table showing results from 75 campaigns with a total spent of ₱112,275,977.11",
+  caption: "₱112,275,977.11 spent · 75 campaigns",
+  note: "Meta Ads Manager, all-time. This is the ₱100M+ the system was built on.",
+} as const;
+
 /** Live receipts from the two-week test. Every one is a real screenshot. */
 export const receipts = [
   {
@@ -361,9 +375,9 @@ export const receipts = [
     src: "/proof/chat-inquiry.webp",
     width: 1022,
     height: 701,
-    alt: "Messenger conversation where the AI sales agent answers a lead's questions and collects their phone number",
+    alt: "Messenger conversation where the AI sales agent answers a lead's questions and collects their contact number, which is blacked out",
     caption: "AI qualified the lead",
-    note: "Number and call time collected, then handed to sales.",
+    note: "Number and call time collected, then handed to sales. Number hidden — it's a real customer's.",
   },
   {
     src: "/proof/chat-scaling.webp",

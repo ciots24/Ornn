@@ -1,12 +1,13 @@
 import { AssetSlot } from "@/components/ui/AssetSlot";
 import { Container } from "@/components/ui/Container";
 import { CtaBlock } from "@/components/ui/CtaBlock";
+import { Exhibit } from "@/components/ui/Exhibit";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Heading } from "@/components/ui/List";
 import { Prose } from "@/components/ui/Prose";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { story } from "@/content/copy";
+import { adSpendDashboard, story } from "@/content/copy";
 
 export function Story() {
   return (
@@ -34,15 +35,12 @@ export function Story() {
               sizes="(min-width: 640px) 34rem, 100vw"
             />
           </Reveal>
+          {/* The page's single most load-bearing claim, substantiated. It gets
+              the Exhibit treatment rather than a plain image because the number
+              that matters sits in small type at the bottom of the table — the
+              zoom viewer is what makes it checkable. */}
           <Reveal delay={90}>
-            <AssetSlot
-              slot={{
-                ratio: "4 / 3",
-                label: "₱100M+ ad spend dashboard",
-                spec: "Ads Manager screenshot showing the ₱100M+ total. No date range needed — 1200×900",
-              }}
-              sizes="(min-width: 640px) 34rem, 100vw"
-            />
+            <Exhibit image={adSpendDashboard} sizes="(min-width: 640px) 34rem, 100vw" />
           </Reveal>
         </div>
       </Container>

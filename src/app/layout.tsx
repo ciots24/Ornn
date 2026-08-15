@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
+import { CopyText } from "@/components/ui/CopyText";
 import { ImageLightbox } from "@/components/ui/ImageLightbox";
 import { ScrollEffects } from "@/components/ui/ScrollEffects";
 
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <ScrollEffects />
         <ImageLightbox />
+        <CopyText />
       </body>
     </html>
   );

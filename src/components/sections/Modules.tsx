@@ -7,6 +7,7 @@ import { Heading, ShiftLine } from "@/components/ui/List";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { AdGallery } from "@/components/ui/AdGallery";
+import { HookSwipe } from "@/components/ui/HookSwipe";
 import { Icon } from "@/components/ui/Icon";
 import { VideoRail } from "@/components/ui/VideoRail";
 import { adCreatives } from "@/content/ads";
@@ -145,6 +146,9 @@ export function Modules() {
                           label="Ads scripted with this GPT"
                           className="w-full"
                         />
+                      ) : item.id === "hooks" ? (
+                        /* The library itself, not a picture of it. */
+                        <HookSwipe className="w-full" />
                       ) : item.id === "video-vault" && hookVaultClips.length > 0 ? (
                         /* Three clips out of the vault. The module's promise is
                            "hooks you can model", so playable reference clips
