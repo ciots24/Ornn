@@ -9,7 +9,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Modules } from "@/components/sections/Modules";
 import { Outcomes } from "@/components/sections/Outcomes";
 import { Pricing } from "@/components/sections/Pricing";
-import { ProofStrip } from "@/components/sections/ProofStrip";
 import { Speed } from "@/components/sections/Speed";
 import { Story } from "@/components/sections/Story";
 import { SystemIntro } from "@/components/sections/SystemIntro";
@@ -28,7 +27,6 @@ export default function Page() {
     <>
       <main className="flex-1">
         <Hero />
-        <ProofStrip />
         <Outcomes />
         <Story />
         <BigBrands />

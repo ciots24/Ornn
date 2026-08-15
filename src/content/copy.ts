@@ -336,6 +336,19 @@ export const modules = [
  * Left uncropped on purpose: the surrounding Ads Manager chrome and the
  * campaign rows are what make the total checkable rather than assertable.
  */
+/**
+ * The client's lot. Not a stock photo of a showroom — this is the dealership
+ * the origin story is about, which is the only reason it earns a place here.
+ */
+export const dealershipLot = {
+  src: "/proof/dealership-lot.webp",
+  width: 680,
+  height: 510,
+  alt: "A covered car dealership lot at night, filled with sedans, SUVs and vans under a lit canopy",
+  caption: "The client's dealership",
+  note: "The lot the origin story is about.",
+} as const;
+
 export const adSpendDashboard = {
   src: "/proof/adspend-100m.webp",
   width: 996,

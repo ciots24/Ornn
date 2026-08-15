@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Hide the floating Next.js dev badge. It only ever rendered in `next dev`,
+   * never in the deployed build — but it sits over the mobile CTA bar, which
+   * makes every local screenshot of the offer look broken.
+   */
+  devIndicators: false,
+
   images: {
     /**
      * Ship the images exactly as they sit in /public.

@@ -1,4 +1,3 @@
-import { AssetSlot } from "@/components/ui/AssetSlot";
 import { Container } from "@/components/ui/Container";
 import { CtaBlock } from "@/components/ui/CtaBlock";
 import { Exhibit } from "@/components/ui/Exhibit";
@@ -7,7 +6,7 @@ import { Heading } from "@/components/ui/List";
 import { Prose } from "@/components/ui/Prose";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { adSpendDashboard, story } from "@/content/copy";
+import { adSpendDashboard, dealershipLot, story } from "@/content/copy";
 
 export function Story() {
   return (
@@ -26,14 +25,7 @@ export function Story() {
       <Container width="wide" className="my-10">
         <div className="grid gap-4 sm:grid-cols-2">
           <Reveal>
-            <AssetSlot
-              slot={{
-                ratio: "4 / 3",
-                label: "JB at the car dealership",
-                spec: "JB working on the laptop in the office, or a wide shot mid-work. No dealership branding — 1200×900",
-              }}
-              sizes="(min-width: 640px) 34rem, 100vw"
-            />
+            <Exhibit image={dealershipLot} sizes="(min-width: 640px) 34rem, 100vw" />
           </Reveal>
           {/* The page's single most load-bearing claim, substantiated. It gets
               the Exhibit treatment rather than a plain image because the number

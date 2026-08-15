@@ -68,7 +68,13 @@ export function Modules() {
                   }`}
                 >
                   {/* Copy */}
-                  <div className="relative overflow-hidden p-6 sm:p-8 lg:p-10">
+                  {/* min-w-0: a grid item defaults to min-width:auto, so the
+                      scroll rail in the other column would otherwise force
+                      BOTH columns to its content width — the hooks deck blew
+                      the copy column out to 781px inside a 375px phone, where
+                      the card's overflow-hidden then silently clipped every
+                      line of text. */}
+                  <div className="relative min-w-0 overflow-hidden p-6 sm:p-8 lg:p-10">
                     {/* A catalogue numeral, barely there. It makes "seven
                         pieces" literal and gives each card a place in the
                         sequence without spending any colour on it. It lives in
@@ -130,7 +136,7 @@ export function Modules() {
                   </div>
 
                   {/* Asset */}
-                  <div className="border-t border-line bg-surface-sunken p-5 sm:p-7 lg:h-full lg:border-l lg:border-t-0 lg:p-8">
+                  <div className="min-w-0 border-t border-line bg-surface-sunken p-5 sm:p-7 lg:h-full lg:border-l lg:border-t-0 lg:p-8">
                     <div className="flex h-full w-full items-center justify-center">
                       {/* The image-ads module shows the ads it actually made —
                           the module's promise is "10 image ads in an hour", so
