@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Roboto, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
+import { ImageLightbox } from "@/components/ui/ImageLightbox";
+import { ScrollEffects } from "@/components/ui/ScrollEffects";
 
 /* Self-hosted at build time by next/font — no runtime requests to Google,
    which keeps the page fast and the Cloudflare deploy dependency-free. */
@@ -53,6 +55,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col bg-ink-950 font-sans text-paper">
         {children}
+        <ScrollEffects />
+        <ImageLightbox />
       </body>
     </html>
   );

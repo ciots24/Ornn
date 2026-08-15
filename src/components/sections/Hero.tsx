@@ -1,7 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { Marker } from "@/components/ui/Marker";
-import { Reveal } from "@/components/ui/Reveal";
 import { hero } from "@/content/copy";
 import { offer } from "@/content/offer";
 
@@ -11,11 +10,11 @@ export function Hero() {
       <div aria-hidden className="absolute inset-0 grid-veil" />
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full bg-brand/12 blur-[120px]"
+        className="absolute -top-40 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full" style={{background:"radial-gradient(closest-side, rgb(229 57 53 / 0.12), transparent)"}}
       />
 
       <Container width="wide" className="relative">
-        <Reveal className="mx-auto max-w-[52rem] text-center">
+        <div className="mx-auto max-w-[52rem] text-center">
           <p className="label-caps mx-auto max-w-md text-balance text-fog">
             {hero.eyebrow}
           </p>
@@ -31,9 +30,9 @@ export function Hero() {
           <p className="mx-auto mt-5 max-w-xl text-balance text-base leading-[1.55] text-fog sm:text-xl">
             {hero.subhead}
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={120} className="mt-7 flex flex-col items-center">
+        <div className="mt-7 flex flex-col items-center">
           <CtaButton href={offer.checkoutUrl} className="max-w-md">
             {hero.cta}
           </CtaButton>
@@ -48,10 +47,10 @@ export function Hero() {
               </li>
             ))}
           </ul>
-        </Reveal>
+        </div>
 
         {/* The thesis, drawn to scale: the input is a sliver of the outcome. */}
-        <Reveal delay={200} className="mx-auto mt-11 max-w-2xl">
+        <div className="mx-auto mt-11 max-w-2xl">
           <div className="flex items-center justify-between">
             <span className="label-caps text-brand">What you spend</span>
             <span className="label-caps text-fog-dim">What it built</span>
@@ -73,7 +72,7 @@ export function Hero() {
               <span className="text-base font-medium text-fog-dim">/month</span>
             </span>
           </div>
-        </Reveal>
+        </div>
       </Container>
     </header>
   );

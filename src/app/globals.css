@@ -19,7 +19,10 @@
   /* Text */
   --color-paper: #ffffff;
   --color-fog: #a3a3ab;
-  --color-fog-dim: #6e6e77;
+  /* 5.15:1 against the lightest surface it sits on (ink-600), so the small
+     text it's used for clears WCAG AA. #6e6e77 looked right but measured
+     3.44:1 and failed the audit. */
+  --color-fog-dim: #8b8b95;
 
   /* Brand */
   --color-brand: #e53935;
@@ -189,8 +192,8 @@
 .marker-path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 820ms cubic-bezier(0.65, 0, 0.35, 1)
-    var(--marker-delay, 220ms);
+  transition: stroke-dashoffset 450ms cubic-bezier(0.65, 0, 0.35, 1)
+    var(--marker-delay, 60ms);
 }
 
 .marker-path[data-shown="true"] {
@@ -229,6 +232,12 @@
     linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
 }
+
+/* NOTE: content-visibility was tried here and removed. With 26 sections of
+   wildly different heights, no single contain-intrinsic-size is close enough —
+   the placeholder heights threw scroll positions off badly enough that reveals
+   never intersected and the page stayed blank. Revisit only with per-section
+   measured heights. */
 
 @media (prefers-reduced-motion: reduce) {
   html {

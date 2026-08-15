@@ -77,7 +77,7 @@ export function Pricing() {
             <div aria-hidden className="absolute inset-0 grid-veil" />
             <div
               aria-hidden
-              className="absolute -top-32 left-1/2 h-80 w-[36rem] -translate-x-1/2 rounded-full bg-brand/18 blur-[100px]"
+              className="absolute -top-32 left-1/2 h-80 w-[36rem] -translate-x-1/2 rounded-full" style={{background:"radial-gradient(closest-side, rgb(229 57 53 / 0.18), transparent)"}}
             />
 
             <div className="relative px-6 py-12 text-center sm:px-10 sm:py-16">

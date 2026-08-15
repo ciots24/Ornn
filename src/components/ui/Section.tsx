@@ -18,15 +18,19 @@ export function Section({
   tone = "base",
   className = "",
   children,
+  "aria-labelledby": ariaLabelledBy,
 }: {
   id?: string;
   tone?: Tone;
   className?: string;
   children: ReactNode;
+  /** Points at the id of the heading that names this section. */
+  "aria-labelledby"?: string;
 }) {
   return (
     <section
       id={id}
+      aria-labelledby={ariaLabelledBy}
       // scroll-mt clears the fixed desktop offer bar when jumping to an anchor.
       className={`relative scroll-mt-20 py-band lg:py-band-lg ${tones[tone]} ${className}`}
     >

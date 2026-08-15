@@ -1,5 +1,22 @@
-import Image from "next/image";
-import { ExhibitZoom } from "./ExhibitZoom";
+import { imageVariants } from "@/content/image-variants";
+
+/**
+ * Builds a srcset from the pre-generated variants.
+ *
+ * `images.unoptimized` means Next emits a bare `src` with no srcset, so a phone
+ * would download a 1345px-wide receipt to display it at 300px. Pairing this
+ * with the `sizes` each rail already passes lets the browser pick the smallest
+ * file that still looks sharp.
+ */
+function buildSrcSet(src: string, width: number): string | undefined {
+  const base = src.replace(/^\/proof\//, "").replace(/\.webp$/, "");
+  const widths = imageVariants[base];
+  if (!widths?.length) return undefined;
+
+  const entries = widths.map((w) => `/proof/${base}-${w}w.webp ${w}w`);
+  entries.push(`${src} ${width}w`);
+  return entries.join(", ");
+}
 
 /**
  * Portrait screenshots get a narrower card than landscape ones, so a rail of
@@ -56,19 +73,44 @@ export function Exhibit({
         <span className="label-caps truncate tracking-[0.07em] text-paper/85 @[20rem]:tracking-[0.16em]">
           {image.caption}
         </span>
-        <ExhibitZoom src={image.src} alt={image.alt} caption={image.caption} />
+        {/* Plain server-rendered trigger. The one <ImageLightbox> in the
+            layout listens for these, so exhibits cost no client JS. */}
+        <button
+          type="button"
+          data-zoom-src={image.src}
+          data-zoom-alt={image.alt}
+          data-zoom-caption={image.caption}
+          aria-label={`View ${image.caption} at full size`}
+          className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full border border-ink-400 px-2 py-1 text-fog transition-colors duration-200 hover:border-brand hover:text-brand-hi @[20rem]:px-2.5"
+        >
+          <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
+            <circle cx="8.75" cy="8.75" r="5.25" stroke="currentColor" strokeWidth="1.8" />
+            <path
+              d="m12.75 12.75 3.75 3.75M6.75 8.75h4M8.75 6.75v4"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span aria-hidden className="label-caps hidden text-[0.6rem] @[20rem]:inline">
+            Full size
+          </span>
+        </button>
       </figcaption>
 
       <div className="bg-ink-700 p-2">
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={image.src}
+          srcSet={buildSrcSet(image.src, image.width)}
           alt={image.alt}
           width={image.width}
           height={image.height}
           sizes={sizes}
-          priority={priority}
-          loading={priority ? undefined : "lazy"}
-          className="w-full rounded-lg"
+          decoding="async"
+          fetchPriority={priority ? "high" : undefined}
+          loading={priority ? "eager" : "lazy"}
+          className="h-auto w-full rounded-lg"
         />
       </div>
 

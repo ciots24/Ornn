@@ -5,8 +5,15 @@ import { outcomes } from "@/content/copy";
 
 export function Outcomes() {
   return (
-    <Section tone="base">
+    <Section tone="base" aria-labelledby="outcomes-heading">
       <Container width="wide">
+        {/* The cards carry h3s, so without this the page jumped h1 → h3 and the
+            section had no name for screen readers. Visually the card titles are
+            heading enough, so this stays hidden. */}
+        <h2 id="outcomes-heading" className="sr-only">
+          What the Ads2Sawa system does for you
+        </h2>
+
         <ul className="grid gap-4 sm:grid-cols-2">
           {outcomes.map((item, index) => (
             <Reveal

@@ -15,7 +15,7 @@ export function FinalCta() {
       <div aria-hidden className="absolute inset-0 grid-veil" />
       <div
         aria-hidden
-        className="absolute -bottom-56 left-1/2 h-[28rem] w-[44rem] -translate-x-1/2 rounded-full bg-brand/12 blur-[110px]"
+        className="absolute -bottom-56 left-1/2 h-[28rem] w-[44rem] -translate-x-1/2 rounded-full" style={{background:"radial-gradient(closest-side, rgb(229 57 53 / 0.12), transparent)"}}
       />
 
       <Container className="relative">

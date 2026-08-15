@@ -1,16 +1,15 @@
-"use client";
-
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 type Shape = "underline" | "circle";
 
 /**
- * Red pen over a number. Used exactly three times on the page — the hero's
- * daily budget, the 37, and the founding price — because an annotation that
- * marks everything marks nothing.
+ * Red pen over a number. Used sparingly — the hero's daily budget, the 37, and
+ * the founding price — because an annotation that marks everything marks nothing.
  *
- * Paths use pathLength="1" so a single CSS dash rule animates any shape, and
- * vector-effect keeps the stroke weight honest when the box stretches.
+ * A server component: it emits the SVG and a `data-marker` hook, and
+ * `ScrollEffects` draws it when it scrolls into view. Paths carry
+ * pathLength="1" so one CSS dash rule animates any shape without measuring it,
+ * and vector-effect keeps the stroke weight honest when the box stretches.
  */
 export function Marker({
   children,
@@ -21,39 +20,15 @@ export function Marker({
   shape?: Shape;
   className?: string;
 }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        setShown(true);
-        observer.disconnect();
-      },
-      { threshold: 0.6 },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <span ref={ref} className={`relative inline-block ${className}`}>
+    <span data-marker="" className={`relative inline-block ${className}`}>
       <span className="relative z-10">{children}</span>
-      {shape === "underline" ? (
-        <Underline shown={shown} />
-      ) : (
-        <CircleMark shown={shown} />
-      )}
+      {shape === "underline" ? <Underline /> : <CircleMark />}
     </span>
   );
 }
 
-function Underline({ shown }: { shown: boolean }) {
+function Underline() {
   return (
     <svg
       aria-hidden
@@ -70,7 +45,6 @@ function Underline({ shown }: { shown: boolean }) {
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
         className="marker-path"
-        data-shown={shown}
       />
       <path
         d="M14 14.5C74 9.5 148 15.5 288 10"
@@ -82,14 +56,13 @@ function Underline({ shown }: { shown: boolean }) {
         strokeOpacity={0.5}
         vectorEffect="non-scaling-stroke"
         className="marker-path"
-        style={{ "--marker-delay": "420ms" } as React.CSSProperties}
-        data-shown={shown}
+        style={{ "--marker-delay": "240ms" } as React.CSSProperties}
       />
     </svg>
   );
 }
 
-function CircleMark({ shown }: { shown: boolean }) {
+function CircleMark() {
   return (
     <svg
       aria-hidden
@@ -106,7 +79,6 @@ function CircleMark({ shown }: { shown: boolean }) {
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
         className="marker-path"
-        data-shown={shown}
       />
     </svg>
   );
