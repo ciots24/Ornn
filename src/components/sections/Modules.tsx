@@ -8,7 +8,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { AdGallery } from "@/components/ui/AdGallery";
 import { Icon } from "@/components/ui/Icon";
+import { VideoRail } from "@/components/ui/VideoRail";
 import { adCreatives } from "@/content/ads";
+import { scriptProofClips } from "@/content/videos";
 import { modules } from "@/content/copy";
 import { peso } from "@/content/offer";
 
@@ -92,6 +94,14 @@ export function Modules() {
                           back to the reserved slot until they're imported. */}
                       {item.id === "image-gpt" && adCreatives.length > 0 ? (
                         <AdGallery className="w-full" />
+                      ) : item.id === "script-gpt" && scriptProofClips.length > 0 ? (
+                        /* Ads that actually ran, scripted by this GPT — better
+                           proof than a screenshot of the GPT's output. */
+                        <VideoRail
+                          clips={scriptProofClips}
+                          label="Ads scripted with this GPT"
+                          className="w-full"
+                        />
                       ) : "asset" in item ? (
                         <Exhibit
                           image={item.asset}
