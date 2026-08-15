@@ -29,20 +29,20 @@ export function FinalCta() {
         </Reveal>
 
         <Reveal className="mt-9">
-          <p className="text-lg leading-[1.6] text-paper/90">
+          <p className="text-lg leading-[1.6] text-text/90">
             {finalCta.challenge}
           </p>
-          <p className="mt-4 text-2xl font-black leading-snug text-paper sm:text-3xl">
+          <p className="mt-4 text-2xl font-black leading-snug text-text sm:text-3xl">
             {finalCta.answer}
           </p>
         </Reveal>
 
-        <Reveal className="mt-12 flex flex-col items-center rounded-3xl border border-ink-500 bg-ink-800/80 px-6 py-10 text-center backdrop-blur-sm sm:px-10">
+        <Reveal className="mt-12 flex flex-col items-center rounded-3xl border border-line bg-surface-sunken/80 px-6 py-10 text-center backdrop-blur-sm sm:px-10">
           <p className="flex items-baseline gap-3">
-            <span className="tnum text-xl font-bold text-fog-dim line-through decoration-brand decoration-2">
+            <span className="tnum text-xl font-bold text-text-dim line-through decoration-brand decoration-2">
               {peso(offer.price.regular)}
             </span>
-            <span className="tnum text-5xl font-black leading-none tracking-[-0.04em] text-paper sm:text-6xl">
+            <span className="tnum text-5xl font-black leading-none tracking-[-0.04em] text-text sm:text-6xl">
               {peso(offer.price.founding)}
             </span>
           </p>
@@ -53,7 +53,7 @@ export function FinalCta() {
             Access the Ads2Sawa System
           </CtaButton>
 
-          <p className="label-caps mt-4 text-fog-dim">
+          <p className="label-caps mt-4 text-text-dim">
             {offer.price.discountLabel} · Instant access · {offer.guarantee.label}
           </p>
         </Reveal>

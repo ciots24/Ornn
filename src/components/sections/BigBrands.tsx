@@ -26,8 +26,8 @@ export function BigBrands() {
         </Reveal>
 
         <Reveal className="mt-10 border-l-2 border-brand pl-6">
-          <p className="label-caps text-brand">{bigBrands.verdictLead}</p>
-          <p className="display-md mt-3 text-balance text-paper">
+          <p className="label-caps text-accent-text">{bigBrands.verdictLead}</p>
+          <p className="display-md mt-3 text-balance text-text">
             {bigBrands.verdict}
           </p>
           <Prose lines={bigBrands.verdictBody} className="mt-5" />

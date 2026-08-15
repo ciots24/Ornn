@@ -44,7 +44,7 @@ export function Countdown({ className = "" }: { className?: string }) {
 
   if (!left) {
     return (
-      <p className={`label-caps text-fog ${className}`}>
+      <p className={`label-caps text-text-muted ${className}`}>
         Founding price has closed
       </p>
     );
@@ -59,7 +59,7 @@ export function Countdown({ className = "" }: { className?: string }) {
 
   return (
     <div className={className}>
-      <p className="label-caps mb-3 text-fog-dim">
+      <p className="label-caps mb-3 text-text-dim">
         ₱{offer.price.founding} ends {offer.deadlineLabel}
       </p>
       <div
@@ -70,12 +70,12 @@ export function Countdown({ className = "" }: { className?: string }) {
         {units.map((unit) => (
           <div
             key={unit.label}
-            className="flex min-w-[3.75rem] flex-1 flex-col items-center rounded-xl border border-ink-500 bg-ink-700 px-2 py-2.5 sm:min-w-[4.5rem]"
+            className="flex min-w-[3.75rem] flex-1 flex-col items-center rounded-xl border border-line bg-surface-raised px-2 py-2.5 sm:min-w-[4.5rem]"
           >
-            <span className="tnum text-2xl font-black leading-none text-paper sm:text-3xl">
+            <span className="tnum text-2xl font-black leading-none text-text sm:text-3xl">
               {String(unit.value).padStart(2, "0")}
             </span>
-            <span className="label-caps mt-1.5 text-[0.6rem] text-fog-dim">
+            <span className="label-caps mt-1.5 text-[0.6rem] text-text-dim">
               {unit.label}
             </span>
           </div>

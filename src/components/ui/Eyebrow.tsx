@@ -12,7 +12,7 @@ export function Eyebrow({
   className?: string;
 }) {
   return (
-    <p className={`flex items-center gap-2.5 label-caps text-fog ${className}`}>
+    <p className={`flex items-center gap-2.5 label-caps text-text-muted ${className}`}>
       <span aria-hidden className="h-3 w-[3px] shrink-0 bg-brand" />
       {children}
     </p>

@@ -2,32 +2,69 @@
 
 /* ==========================================================================
    Ads2Sawa — design tokens
-   Two hues only: brand red and a cool neutral ramp. The proof screenshots
-   supply every other colour on the page, so nothing here competes with them.
+
+   Every colour here was sampled from the brand's own ad creatives rather than
+   chosen by eye. Two things that came out of that measurement and shaped the
+   system:
+
+   1. The brand red is far more saturated than a typical "material" red, and
+      white on it clears AA (4.73:1) — so it can carry the buttons.
+   2. Half the creatives are light. So surfaces are semantic and flip: a
+      section declares dark or light, and every component inside follows
+      without knowing which it is.
    ========================================================================== */
 
 @theme {
-  /* Surfaces, darkest to lightest */
-  --color-ink-950: #08080a;
-  --color-ink-900: #0b0b0e;
-  --color-ink-800: #101013;
-  --color-ink-700: #141417;
-  --color-ink-600: #1a1a1c;
-  --color-ink-500: #232327;
-  --color-ink-400: #2e2e34;
+  /* --- Brand, measured -------------------------------------------------- */
+  /* The headline red across the creatives (#e31212–#e31c1d). */
+  --color-brand: #e31b1b;
+  /* Red text needs different values per surface: the brand red reads 4.31:1
+     on black (under AA) but 4.57:1 on paper. */
+  --color-brand-hi: #ff4d43;   /* red text on dark  — 6.21:1 */
+  --color-brand-ink: #c81414;  /* red text on light — 6.36:1 */
+  --color-brand-deep: #b40b0b; /* the logo maroon, pressed states */
+  /* Anything sitting ON the red fill. Constant, because the fill is constant —
+     using --text here would put near-black on red inside a light section. */
+  --color-on-brand: #ffffff;
 
-  /* Text */
+  /* --- Dark ramp -------------------------------------------------------- */
+  /* True black with a hint of warmth, matching the creatives. The old ramp
+     was blue-tinted, which fought the red. */
+  --color-ink-950: #050504;
+  --color-ink-900: #0a0a09;
+  --color-ink-800: #0f0f0e;
+  --color-ink-700: #151513;
+  --color-ink-600: #1c1c19;
+  --color-ink-500: #262622;
+  --color-ink-400: #33332e;
+
+  /* --- Light ramp ------------------------------------------------------- */
+  --color-paper-50: #fbfbfb;
+  --color-paper-100: #f4f4f3;
+  --color-paper-200: #ececea;
+  --color-paper-300: #dededb;
+  --color-paper-400: #c9c9c5;
+
   --color-paper: #ffffff;
-  --color-fog: #a3a3ab;
-  /* 5.15:1 against the lightest surface it sits on (ink-600), so the small
-     text it's used for clears WCAG AA. #6e6e77 looked right but measured
-     3.44:1 and failed the audit. */
-  --color-fog-dim: #8b8b95;
 
-  /* Brand */
-  --color-brand: #e53935;
-  --color-brand-hi: #ff564a;
-  --color-brand-deep: #8e1f1c;
+  /* --- Semantic surface tokens ------------------------------------------
+     Components reference these and never the ramps, so the same card works on
+     either surface. Declared here with their dark values purely so Tailwind
+     generates the utilities; the [data-surface] blocks below redeclare them.
+
+     They must be real values, not var() aliases: a custom property is
+     substituted once where it's declared, and descendants inherit the
+     resolved colour — so an alias chain rooted at :root can never flip. */
+  --color-surface: #050504;
+  --color-surface-alt: #0a0a09;
+  --color-surface-sunken: #0f0f0e;
+  --color-surface-raised: #151513;
+  --color-line: #262622;
+  --color-line-strong: #33332e;
+  --color-text: #ffffff;
+  --color-text-muted: #a3a3ab;
+  --color-text-dim: #8b8b95;
+  --color-accent-text: #ff4d43;
 
   --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   --font-condensed: var(--font-roboto-condensed), var(--font-roboto), sans-serif;
@@ -37,6 +74,44 @@
   --spacing-band-lg: 7rem;
 }
 
+/* Dark is the default; a section opts into light with data-surface="light".
+   Four steps, darkest to lightest: the page floor, an alternating band, inset
+   wells, and cards. On paper the order inverts — cards float to white. */
+[data-surface="dark"] {
+  --color-surface: #050504;
+  --color-surface-alt: #0a0a09;
+  --color-surface-sunken: #0f0f0e;
+  --color-surface-raised: #151513;
+  --color-line: #262622;
+  --color-line-strong: #33332e;
+  --color-text: #ffffff;
+  --color-text-muted: #a3a3ab;  /* 8.4:1 on the lightest dark surface */
+  --color-text-dim: #8b8b95;    /* 5.9:1 on the lightest dark surface */
+  --color-accent-text: #ff4d43;
+  --veil: 255 255 255;
+  color-scheme: dark;
+}
+
+[data-surface="light"] {
+  --color-surface: #fbfbfb;
+  --color-surface-alt: #f4f4f3;
+  --color-surface-sunken: #ececea;
+  --color-surface-raised: #ffffff;
+  --color-line: #e2e2df;
+  --color-line-strong: #cfcfca;
+  --color-text: #0c0c0b;
+  --color-text-muted: #4d4d54;  /* 8.0:1 on paper */
+  --color-text-dim: #57575e;    /* 6.9:1 on paper */
+  --color-accent-text: #c81414;
+  --veil: 12 12 11;
+  color-scheme: light;
+}
+
+:root {
+  --veil: 255 255 255;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -44,8 +119,8 @@
   }
 
   body {
-    background-color: var(--color-ink-950);
-    color: var(--color-paper);
+    background-color: var(--color-surface);
+    color: var(--color-text);
     font-family: var(--font-sans);
     /* Keeps the fixed mobile CTA bar from covering the footer. */
     padding-bottom: env(safe-area-inset-bottom);
@@ -53,11 +128,12 @@
 
   ::selection {
     background-color: var(--color-brand);
-    color: var(--color-paper);
+    color: var(--color-on-brand);
   }
 
+  /* Follows the surface: the light red would vanish against paper. */
   :focus-visible {
-    outline: 2px solid var(--color-brand-hi);
+    outline: 2px solid var(--color-accent-text);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -106,7 +182,7 @@
 @utility prose-line {
   font-size: 1.0625rem;
   line-height: 1.72;
-  color: var(--color-fog);
+  color: var(--color-text-muted);
 }
 
 @utility tnum {
@@ -122,16 +198,17 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  /* Top-lit red: the bright creative red falling to the logo maroon. */
   background-image: linear-gradient(
     180deg,
     var(--color-brand-hi) 0%,
     var(--color-brand) 55%,
-    #cf2d29 100%
+    var(--color-brand-deep) 100%
   );
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.28),
     inset 0 -1px 0 rgb(0 0 0 / 0.2),
-    0 10px 30px -8px rgb(229 57 53 / 0.55),
+    0 10px 30px -8px rgb(227 27 27 / 0.55),
     0 2px 6px -1px rgb(0 0 0 / 0.4);
   transition:
     transform 180ms cubic-bezier(0.2, 0.8, 0.3, 1),
@@ -143,7 +220,7 @@
   box-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.35),
     inset 0 -1px 0 rgb(0 0 0 / 0.2),
-    0 16px 40px -10px rgb(229 57 53 / 0.7),
+    0 16px 40px -10px rgb(227 27 27 / 0.7),
     0 3px 8px -1px rgb(0 0 0 / 0.45);
 }
 
@@ -225,11 +302,12 @@
   scroll-snap-align: start;
 }
 
-/* Hairline grid used behind the hero and the price reveal */
+/* Hairline grid used behind the hero and the price reveal. Draws in the
+   surface's own contrast direction, so it stays a whisper on paper too. */
 @utility grid-veil {
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--veil) / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--veil) / 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 

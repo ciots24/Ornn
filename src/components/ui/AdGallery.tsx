@@ -25,10 +25,10 @@ export function AdGallery({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
       <div className="flex items-baseline justify-between gap-4">
-        <p className="label-caps text-brand-hi">
+        <p className="label-caps text-accent-text">
           {adCreatives.length} ads made with this GPT
         </p>
-        <p className="label-caps text-fog-dim">
+        <p className="label-caps text-text-dim">
           Swipe <span aria-hidden>→</span>
         </p>
       </div>
@@ -46,7 +46,7 @@ export function AdGallery({ className = "" }: { className?: string }) {
             data-zoom-alt={ad.alt}
             data-zoom-caption={`Ad ${index + 1} of ${adCreatives.length}`}
             aria-label={`View ad ${index + 1} of ${adCreatives.length} at full size`}
-            className="rail-item group w-[58%] max-w-[13rem] overflow-hidden rounded-xl border border-ink-500 bg-ink-700 transition-colors duration-200 hover:border-brand focus-visible:border-brand"
+            className="rail-item group w-[58%] max-w-[13rem] overflow-hidden rounded-xl border border-line bg-surface-raised transition-colors duration-200 hover:border-brand focus-visible:border-brand"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

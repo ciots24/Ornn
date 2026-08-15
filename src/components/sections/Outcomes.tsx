@@ -23,14 +23,14 @@ export function Outcomes() {
               delay={index * 70}
               className="h-full"
             >
-              <div className="flex h-full flex-col rounded-2xl border border-ink-500 bg-ink-700 p-6 transition-colors duration-300 hover:border-ink-400">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-paper">
+              <div className="flex h-full flex-col rounded-2xl border border-line bg-surface-raised p-6 transition-colors duration-300 hover:border-line-strong">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-on-brand">
                   <Icon name={item.icon} className="h-[1.15rem] w-[1.15rem]" />
                 </span>
-                <h3 className="mt-4 text-lg font-black leading-snug tracking-[-0.015em] text-paper sm:text-xl">
+                <h3 className="mt-4 text-lg font-black leading-snug tracking-[-0.015em] text-text sm:text-xl">
                   {item.title}
                 </h3>
-                <p className="mt-2.5 text-[0.9375rem] leading-[1.65] text-fog">
+                <p className="mt-2.5 text-[0.9375rem] leading-[1.65] text-text-muted">
                   {item.body}
                 </p>
               </div>

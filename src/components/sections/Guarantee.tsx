@@ -17,7 +17,7 @@ export function Guarantee() {
             aria-hidden
             className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-brand/40 bg-brand/10"
           >
-            <span className="tnum text-2xl font-black text-brand-hi">
+            <span className="tnum text-2xl font-black text-accent-text">
               {offer.guarantee.uses}
             </span>
           </span>
@@ -33,12 +33,12 @@ export function Guarantee() {
           <Prose lines={guarantee.body} />
         </Reveal>
 
-        <Reveal className="mt-8 rounded-2xl border border-ink-500 bg-ink-700 p-6 sm:p-8">
-          <p className="text-xl font-black leading-snug text-paper sm:text-2xl">
+        <Reveal className="mt-8 rounded-2xl border border-line bg-surface-raised p-6 sm:p-8">
+          <p className="text-xl font-black leading-snug text-text sm:text-2xl">
             {guarantee.kicker}
           </p>
           <Prose lines={guarantee.closing} className="mt-4" />
-          <p className="mt-4 text-lg font-bold leading-snug text-brand-hi">
+          <p className="mt-4 text-lg font-bold leading-snug text-accent-text">
             {guarantee.question}
           </p>
         </Reveal>

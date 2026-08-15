@@ -64,20 +64,20 @@ export function Ledger() {
   }, [running]);
 
   return (
-    <div ref={ref} className="rounded-3xl border border-ink-500 bg-ink-700 p-5 sm:p-7">
-      <p className="label-caps text-fog-dim">Clients closed</p>
+    <div ref={ref} className="rounded-3xl border border-line bg-surface-raised p-5 sm:p-7">
+      <p className="label-caps text-text-dim">Clients closed</p>
 
       {/* The circle mark overflows its box, so the number gets its own row. */}
       <p className="mt-5 flex items-baseline gap-8 pl-3 sm:gap-10 sm:pl-5">
         <Marker shape="circle">
-          <span className="tnum text-[4.5rem] font-black leading-[0.85] tracking-[-0.05em] text-paper sm:text-[6rem]">
+          <span className="tnum text-[4.5rem] font-black leading-[0.85] tracking-[-0.05em] text-text sm:text-[6rem]">
             {count}
           </span>
         </Marker>
-        <span className="label-caps text-fog">in 14 days</span>
+        <span className="label-caps text-text-muted">in 14 days</span>
       </p>
 
-      <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-ink-500 pt-5">
+      <dl className="mt-8 grid grid-cols-3 gap-3 border-t border-line pt-5">
         <Stat label="Ad spend" value={peso(offer.results.totalSpend)} />
         <Stat label="Started at" value={`${peso(offer.results.dailySpend)}/day`} />
         <Stat
@@ -99,7 +99,7 @@ export function Ledger() {
             aria-hidden
             data-filled={running}
             style={{ transitionDelay: `${index * 34}ms` }}
-            className="flex aspect-square items-center justify-center rounded-[5px] border border-ink-400 bg-ink-600 text-transparent transition-all duration-300 ease-out data-[filled=true]:border-brand data-[filled=true]:bg-brand data-[filled=true]:text-paper motion-reduce:transition-none motion-reduce:delay-0"
+            className="flex aspect-square items-center justify-center rounded-[5px] border border-line-strong bg-surface-raised text-transparent transition-all duration-300 ease-out data-[filled=true]:border-brand data-[filled=true]:bg-brand data-[filled=true]:text-on-brand motion-reduce:transition-none motion-reduce:delay-0"
           >
             <svg viewBox="0 0 20 20" fill="none" className="h-2/5 w-2/5">
               <path
@@ -114,7 +114,7 @@ export function Ledger() {
         ))}
       </div>
 
-      <p className="mt-4 text-[0.8125rem] leading-relaxed text-fog-dim">
+      <p className="mt-4 text-[0.8125rem] leading-relaxed text-text-dim">
         {peso(offer.results.frontendPrice)} frontend each · around half added a{" "}
         {peso(5000)} upsell · {offer.results.retained} of {TOTAL} still paying
         monthly, six months on
@@ -134,10 +134,10 @@ function Stat({
 }) {
   return (
     <div>
-      <dt className="label-caps text-fog-dim">{label}</dt>
+      <dt className="label-caps text-text-dim">{label}</dt>
       <dd
         className={`tnum mt-1.5 text-[0.9375rem] font-black leading-tight sm:text-2xl ${
-          highlight ? "text-brand-hi" : "text-paper"
+          highlight ? "text-accent-text" : "text-text"
         }`}
       >
         {value}

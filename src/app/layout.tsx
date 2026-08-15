@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08080a",
+  themeColor: "#050504",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{`.reveal{opacity:1;transform:none}.marker-path{stroke-dashoffset:0}`}</style>
         </noscript>
       </head>
-      <body className="flex min-h-full flex-col bg-ink-950 font-sans text-paper">
+      <body className="flex min-h-full flex-col bg-surface font-sans text-text">
         {children}
         <ScrollEffects />
         <ImageLightbox />

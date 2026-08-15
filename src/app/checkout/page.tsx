@@ -26,18 +26,18 @@ export const metadata: Metadata = {
 export default function CheckoutPage() {
   return (
     <>
-      <header className="border-b border-ink-500 bg-ink-900">
+      <header className="border-b border-line bg-surface-alt">
         <Container width="wide" className="flex items-center gap-4 py-4">
           <Link
             href="/"
-            className="label-caps -my-2 flex items-center py-3 text-paper transition-colors hover:text-brand-hi"
+            className="label-caps -my-2 flex items-center py-3 text-text transition-colors hover:text-accent-text"
           >
             {offer.brand}
-            <span className="mx-2 text-ink-400">/</span>
-            <span className="text-fog">{offer.product}</span>
+            <span className="mx-2 text-line-strong">/</span>
+            <span className="text-text-muted">{offer.product}</span>
           </Link>
 
-          <span className="label-caps ml-auto flex items-center gap-2 text-fog-dim">
+          <span className="label-caps ml-auto flex items-center gap-2 text-text-dim">
             <LockIcon />
             {checkout.eyebrow}
           </span>
@@ -47,7 +47,7 @@ export default function CheckoutPage() {
       <main className="flex-1 pb-28 lg:pb-16">
         {/* Promise restated — the buyer arrived from a button and needs to see
             the same thing they clicked. */}
-        <section className="relative overflow-hidden border-b border-ink-500 bg-ink-950 py-8 sm:py-11">
+        <section className="relative overflow-hidden border-b border-line bg-surface py-8 sm:py-11">
           <div aria-hidden className="absolute inset-0 grid-veil" />
           <div
             aria-hidden
@@ -55,10 +55,10 @@ export default function CheckoutPage() {
           />
 
           <Container width="wide" className="relative text-center">
-            <h1 className="display-md mx-auto max-w-2xl text-balance text-paper sm:display-lg">
+            <h1 className="display-md mx-auto max-w-2xl text-balance text-text sm:display-lg">
               {checkout.headline}
             </h1>
-            <p className="mx-auto mt-3 max-w-lg text-balance text-[0.9375rem] leading-relaxed text-fog sm:text-[1.0625rem]">
+            <p className="mx-auto mt-3 max-w-lg text-balance text-[0.9375rem] leading-relaxed text-text-muted sm:text-[1.0625rem]">
               {checkout.subhead}
             </p>
 
@@ -67,7 +67,7 @@ export default function CheckoutPage() {
               {checkout.trust.map((item) => (
                 <li
                   key={item}
-                  className="label-caps flex items-center gap-1.5 rounded-full border border-ink-500 bg-ink-800 px-2.5 py-1.5 text-[0.6rem] text-fog"
+                  className="label-caps flex items-center gap-1.5 rounded-full border border-line bg-surface-sunken px-2.5 py-1.5 text-[0.6rem] text-text-muted"
                 >
                   <CheckIcon />
                   {item}
@@ -85,19 +85,19 @@ export default function CheckoutPage() {
 
         {/* Risk reversal, stated once — it also appeared in the footer, which
             made the page argue with itself for space. */}
-        <section className="border-t border-ink-500 bg-ink-800 py-10">
+        <section className="border-t border-line bg-surface-sunken py-10">
           <Container width="wide">
             <div className="mx-auto flex max-w-2xl items-start gap-4 rounded-2xl border border-brand/35 bg-brand/[0.07] p-5 sm:p-6">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-brand/40 bg-brand/10">
-                <span className="tnum text-lg font-black text-brand-hi">
+                <span className="tnum text-lg font-black text-accent-text">
                   {offer.guarantee.uses}
                 </span>
               </span>
               <div>
-                <h2 className="text-lg font-black tracking-[-0.02em] text-paper">
+                <h2 className="text-lg font-black tracking-[-0.02em] text-text">
                   {checkout.guarantee.title}
                 </h2>
-                <p className="mt-2 text-[0.9375rem] leading-relaxed text-paper/85">
+                <p className="mt-2 text-[0.9375rem] leading-relaxed text-text/85">
                   {checkout.guarantee.body}
                 </p>
               </div>
@@ -111,17 +111,17 @@ export default function CheckoutPage() {
         {testimonials.length > 0 && <Testimonials />}
       </main>
 
-      <footer className="border-t border-ink-500 bg-ink-950 py-8">
+      <footer className="border-t border-line bg-surface py-8">
         <Container width="wide">
-          <p className="text-[0.8125rem] leading-relaxed text-fog">
-            <span className="font-bold text-paper">{checkout.help.title}</span>{" "}
+          <p className="text-[0.8125rem] leading-relaxed text-text-muted">
+            <span className="font-bold text-text">{checkout.help.title}</span>{" "}
             {checkout.help.body}
           </p>
 
-          <p className="mt-5 border-t border-ink-500 pt-5 text-[0.75rem] leading-relaxed text-fog-dim">
+          <p className="mt-5 border-t border-line pt-5 text-[0.75rem] leading-relaxed text-text-dim">
             {legal.disclaimer}
           </p>
-          <p className="mt-3 text-[0.75rem] text-fog-dim">
+          <p className="mt-3 text-[0.75rem] text-text-dim">
             © {offer.copyrightYear} {offer.brand}. All rights reserved.
           </p>
         </Container>

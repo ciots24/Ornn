@@ -23,7 +23,7 @@ export function SystemIntro() {
         </Reveal>
 
         <Reveal className="mt-8">
-          <p className="label-caps text-fog-dim">Ginamit ko &apos;to para…</p>
+          <p className="label-caps text-text-dim">Ginamit ko &apos;to para…</p>
           <ul className="mt-4 space-y-3">
             {system.usedFor.map((item) => (
               <li key={item} className="flex gap-3.5">
@@ -31,7 +31,7 @@ export function SystemIntro() {
                   aria-hidden
                   className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rotate-45 bg-brand"
                 />
-                <span className="text-[1.0625rem] leading-[1.6] text-paper/90">
+                <span className="text-[1.0625rem] leading-[1.6] text-text/90">
                   {item}
                 </span>
               </li>
@@ -67,7 +67,7 @@ export function SystemIntro() {
           {system.notThis.map((line) => (
             <p
               key={line}
-              className="text-[1.0625rem] leading-[1.6] text-fog-dim"
+              className="text-[1.0625rem] leading-[1.6] text-text-dim"
             >
               {line}
             </p>
@@ -75,7 +75,7 @@ export function SystemIntro() {
         </Reveal>
 
         <Reveal className="mt-6">
-          <Prose lines={system.isThis} className="text-paper/90" />
+          <Prose lines={system.isThis} className="text-text/90" />
         </Reveal>
       </Container>
 
@@ -91,7 +91,7 @@ export function SystemIntro() {
         <CheckList items={forYou.items} className="mt-7" />
 
         <Reveal className="mt-8">
-          <p className="text-lg font-bold text-paper">{forYou.close}</p>
+          <p className="text-lg font-bold text-text">{forYou.close}</p>
         </Reveal>
 
         <CtaBlock className="mt-10" />

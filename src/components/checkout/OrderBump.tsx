@@ -27,7 +27,7 @@ export function OrderBump({
       className={`block cursor-pointer rounded-2xl border-2 border-dashed p-5 transition-colors duration-200 sm:p-6 ${
         checked
           ? "border-solid border-brand bg-brand/[0.09]"
-          : "border-ink-400 bg-ink-800/60 hover:border-brand/60"
+          : "border-line-strong bg-surface-sunken/60 hover:border-brand/60"
       }`}
     >
       <div className="flex gap-4">
@@ -41,7 +41,7 @@ export function OrderBump({
         />
         <span
           aria-hidden
-          className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 border-ink-400 bg-ink-700 text-transparent transition-colors duration-200 peer-checked:border-brand peer-checked:bg-brand peer-checked:text-paper peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-hi"
+          className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 border-line-strong bg-surface-raised text-transparent transition-colors duration-200 peer-checked:border-brand peer-checked:bg-brand peer-checked:text-on-brand peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-hi"
         >
           <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
             <path
@@ -55,10 +55,10 @@ export function OrderBump({
         </span>
 
         <div className="min-w-0 flex-1">
-          <p className="label-caps text-brand-hi">{bump.ribbon}</p>
+          <p className="label-caps text-accent-text">{bump.ribbon}</p>
 
-          <p className="mt-2 text-lg font-black leading-snug tracking-[-0.02em] text-paper sm:text-xl">
-            <span className="text-brand-hi">Yes</span> — add the {bump.name}
+          <p className="mt-2 text-lg font-black leading-snug tracking-[-0.02em] text-text sm:text-xl">
+            <span className="text-accent-text">Yes</span> — add the {bump.name}
           </p>
 
           <ul className="mt-4 space-y-2.5">
@@ -78,27 +78,27 @@ export function OrderBump({
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="text-[0.9375rem] leading-[1.55] text-paper/85">
+                <span className="text-[0.9375rem] leading-[1.55] text-text/85">
                   {item}
                 </span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-5 border-t border-ink-500 pt-4">
+          <div className="mt-5 border-t border-line pt-4">
             <ShiftLine from={bump.shift.from} to={bump.shift.to} />
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
-            <span className="tnum text-2xl font-black leading-none text-paper">
+            <span className="tnum text-2xl font-black leading-none text-text">
               +{peso(bump.price)}
             </span>
             {bump.wasPrice && (
               <>
-                <span className="tnum text-base font-bold text-fog-dim line-through">
+                <span className="tnum text-base font-bold text-text-dim line-through">
                   {peso(bump.wasPrice)}
                 </span>
-                <span className="label-caps rounded-full bg-brand px-2.5 py-1 text-paper">
+                <span className="label-caps rounded-full bg-brand px-2.5 py-1 text-on-brand">
                   Save {peso(saving)}
                 </span>
               </>

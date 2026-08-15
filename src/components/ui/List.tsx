@@ -41,10 +41,10 @@ export function CheckList({
       {items.map((item, index) => (
         <Reveal as="li" key={item} delay={index * 55}>
           <div className="flex gap-3.5">
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-paper">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-on-brand">
               <CheckIcon />
             </span>
-            <span className="text-[1.0625rem] leading-[1.6] text-paper/90">
+            <span className="text-[1.0625rem] leading-[1.6] text-text/90">
               {item}
             </span>
           </div>
@@ -66,15 +66,15 @@ export function DeadEndList({
     <ul className={`space-y-3 ${className}`}>
       {items.map((item, index) => (
         <Reveal as="li" key={item.label} delay={index * 60}>
-          <div className="flex gap-3.5 rounded-xl border border-ink-500 bg-ink-700/70 p-4">
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-ink-400 text-fog-dim">
+          <div className="flex gap-3.5 rounded-xl border border-line bg-surface-raised/70 p-4">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-line-strong text-text-dim">
               <CrossIcon />
             </span>
             <div>
-              <p className="font-bold text-paper/70 line-through decoration-fog-dim decoration-1">
+              <p className="font-bold text-text/70 line-through decoration-text-dim decoration-1">
                 {item.label}
               </p>
-              <p className="mt-1 text-[0.9375rem] leading-relaxed text-fog">
+              <p className="mt-1 text-[0.9375rem] leading-relaxed text-text-muted">
                 {item.body}
               </p>
             </div>
@@ -89,7 +89,7 @@ export function DeadEndList({
 export function ShiftLine({ from, to }: { from: string; to: string }) {
   return (
     <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.9375rem]">
-      <span className="text-fog-dim line-through decoration-1">
+      <span className="text-text-dim line-through decoration-1">
         &ldquo;{from}&rdquo;
       </span>
       <svg
@@ -106,7 +106,7 @@ export function ShiftLine({ from, to }: { from: string; to: string }) {
           strokeLinejoin="round"
         />
       </svg>
-      <span className="font-bold text-paper">&ldquo;{to}&rdquo;</span>
+      <span className="font-bold text-text">&ldquo;{to}&rdquo;</span>
     </p>
   );
 }
@@ -123,7 +123,7 @@ export function Heading({
 }) {
   return (
     <h2
-      className={`${size === "lg" ? "display-lg" : "display-md"} text-balance text-paper ${className}`}
+      className={`${size === "lg" ? "display-lg" : "display-md"} text-balance text-text ${className}`}
     >
       {children}
     </h2>

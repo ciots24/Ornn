@@ -11,18 +11,18 @@ export function ProofStrip() {
   return (
     <section
       aria-label="Payment receipts from the two-week test"
-      className="border-b border-ink-500 bg-ink-900 py-12 sm:py-16"
+      className="border-b border-line bg-surface-alt py-12 sm:py-16"
     >
       <Container width="wide">
         <Reveal className="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
-          <p className="max-w-md text-balance text-lg font-bold leading-snug text-paper sm:text-xl">
+          <p className="max-w-md text-balance text-lg font-bold leading-snug text-text sm:text-xl">
             Real receipts from the two-week test that closed{" "}
-            <span className="text-brand-hi">
+            <span className="text-accent-text">
               {offer.results.clients} clients
             </span>{" "}
             on {peso(offer.results.dailySpend)} a day.
           </p>
-          <p className="label-caps text-fog-dim">
+          <p className="label-caps text-text-dim">
             Swipe to read <span aria-hidden>→</span>
           </p>
         </Reveal>

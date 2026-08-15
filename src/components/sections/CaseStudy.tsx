@@ -41,10 +41,10 @@ const journeyFlow = {
 
 export function CaseStudy() {
   return (
-    <Section id="case-study" tone="deep" className="border-y border-ink-500">
+    <Section id="case-study" tone="deep" className="border-y border-line">
       <Container width="wide">
         <Reveal className="max-w-2xl">
-          <span className="label-caps inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-3.5 py-1.5 text-brand-hi">
+          <span className="label-caps inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-3.5 py-1.5 text-accent-text">
             Free bonus · included today
           </span>
           <Eyebrow className="mt-6">{caseStudy.eyebrow}</Eyebrow>
@@ -66,19 +66,19 @@ export function CaseStudy() {
           </Reveal>
 
           <Reveal delay={80} className="flex flex-col gap-4">
-            <div className="rounded-2xl border border-ink-500 bg-ink-700 p-6 sm:p-8">
+            <div className="rounded-2xl border border-line bg-surface-raised p-6 sm:p-8">
               <Prose lines={caseStudy.intro} />
             </div>
 
-            <div className="rounded-2xl border border-ink-500 bg-ink-700 p-6 sm:p-8">
-              <p className="label-caps text-fog-dim">
+            <div className="rounded-2xl border border-line bg-surface-raised p-6 sm:p-8">
+              <p className="label-caps text-text-dim">
                 Now picture this in your business
               </p>
               <ul className="mt-5 space-y-5">
                 {caseStudy.math.map((row) => (
                   <li key={row.question}>
-                    <p className="text-[0.9375rem] text-fog">{row.question}</p>
-                    <p className="mt-1 text-lg font-black leading-snug text-paper sm:text-xl">
+                    <p className="text-[0.9375rem] text-text-muted">{row.question}</p>
+                    <p className="mt-1 text-lg font-black leading-snug text-text sm:text-xl">
                       {row.answer}
                     </p>
                   </li>
@@ -94,21 +94,21 @@ export function CaseStudy() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-10">
           <div>
             <Reveal>
-              <h3 className="display-md text-paper">The exact system we ran</h3>
+              <h3 className="display-md text-text">The exact system we ran</h3>
             </Reveal>
 
             <ol className="mt-7 space-y-0">
               {caseStudy.steps.map((step, index) => (
                 <Reveal as="li" key={step.label} delay={index * 45}>
-                  <div className="flex gap-4 border-t border-ink-500 py-4">
-                    <span className="tnum label-caps w-6 shrink-0 pt-1 text-brand">
+                  <div className="flex gap-4 border-t border-line py-4">
+                    <span className="tnum label-caps w-6 shrink-0 pt-1 text-accent-text">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <p className="font-bold leading-snug text-paper">
+                      <p className="font-bold leading-snug text-text">
                         {step.label}
                       </p>
-                      <p className="mt-1 text-[0.9375rem] leading-snug text-fog">
+                      <p className="mt-1 text-[0.9375rem] leading-snug text-text-muted">
                         {step.detail}
                       </p>
                     </div>
@@ -128,8 +128,8 @@ export function CaseStudy() {
       <div className="mt-14">
         <Container width="wide">
           <Reveal className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
-            <h3 className="display-md text-paper">What it looked like on the ground</h3>
-            <p className="label-caps text-fog-dim">
+            <h3 className="display-md text-text">What it looked like on the ground</h3>
+            <p className="label-caps text-text-dim">
               Swipe <span aria-hidden>→</span>
             </p>
           </Reveal>

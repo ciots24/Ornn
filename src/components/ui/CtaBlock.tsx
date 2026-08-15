@@ -23,7 +23,7 @@ export function CtaBlock({
         {showPrice && (
           <>
             {" — "}
-            <span className="whitespace-nowrap font-medium text-paper/60 line-through decoration-[1.5px]">
+            <span className="whitespace-nowrap font-medium text-on-brand/60 line-through decoration-[1.5px]">
               {peso(offer.price.regular)}
             </span>{" "}
             <span className="whitespace-nowrap">{peso(offer.price.founding)}</span>
@@ -31,7 +31,7 @@ export function CtaBlock({
         )}
       </CtaButton>
 
-      <p className="label-caps mt-4 text-fog-dim">
+      <p className="label-caps mt-4 text-text-dim">
         {offer.price.discountLabel} · Instant access · {offer.guarantee.label}
       </p>
     </Reveal>

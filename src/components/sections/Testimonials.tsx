@@ -40,7 +40,7 @@ export function Testimonials() {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-ink-500 bg-ink-700 p-6">
+    <figure className="flex h-full flex-col rounded-2xl border border-line bg-surface-raised p-6">
       <svg
         aria-hidden
         viewBox="0 0 24 24"
@@ -50,12 +50,12 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         <path d="M9.6 5.5 6.9 11h2.9v7.5H2.4V11l3-5.5h4.2Zm11.6 0L18.5 11h2.9v7.5H14V11l3-5.5h4.2Z" />
       </svg>
 
-      <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-[1.6] text-paper/90">
+      <blockquote className="mt-4 flex-1 text-[1.0625rem] leading-[1.6] text-text/90">
         {item.quote}
       </blockquote>
 
       {item.screenshot && (
-        <div className="mt-5 overflow-hidden rounded-xl border border-ink-500 bg-ink-800 p-1.5">
+        <div className="mt-5 overflow-hidden rounded-xl border border-line bg-surface-sunken p-1.5">
           <Image
             src={item.screenshot.src}
             alt={item.screenshot.alt}
@@ -68,7 +68,7 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         </div>
       )}
 
-      <figcaption className="mt-5 flex items-center gap-3 border-t border-ink-500 pt-5">
+      <figcaption className="mt-5 flex items-center gap-3 border-t border-line pt-5">
         {item.avatar ? (
           <Image
             src={item.avatar.src}
@@ -80,14 +80,14 @@ function TestimonialCard({ item }: { item: Testimonial }) {
         ) : (
           <span
             aria-hidden
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-sm font-black text-brand"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-brand/15 text-sm font-black text-accent-text"
           >
             {item.name.charAt(0)}
           </span>
         )}
         <span>
-          <span className="block text-sm font-bold text-paper">{item.name}</span>
-          <span className="label-caps block text-[0.65rem] text-fog-dim">
+          <span className="block text-sm font-bold text-text">{item.name}</span>
+          <span className="label-caps block text-[0.65rem] text-text-dim">
             {item.business}
           </span>
         </span>
@@ -99,19 +99,19 @@ function TestimonialCard({ item }: { item: Testimonial }) {
 /** Holds the exact card shape until a real testimonial replaces it. */
 function TestimonialSlot({ index }: { index: number }) {
   return (
-    <div className="flex h-full min-h-[15rem] flex-col justify-between rounded-2xl border border-dashed border-ink-400 bg-ink-800/60 p-6">
-      <p className="label-caps text-fog">Testimonial {index}</p>
-      <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-fog-dim">
+    <div className="flex h-full min-h-[15rem] flex-col justify-between rounded-2xl border border-dashed border-line-strong bg-surface-sunken/60 p-6">
+      <p className="label-caps text-text-muted">Testimonial {index}</p>
+      <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-text-dim">
         Drop a real client quote here — 2 to 3 sentences, plus first name,
         business type, and city. A screenshot of the original message works even
         harder than a typed quote.
       </p>
-      <div className="mt-5 flex items-center gap-3 border-t border-ink-500 pt-5">
+      <div className="mt-5 flex items-center gap-3 border-t border-line pt-5">
         <span
           aria-hidden
-          className="h-10 w-10 rounded-full border border-dashed border-ink-400"
+          className="h-10 w-10 rounded-full border border-dashed border-line-strong"
         />
-        <span className="label-caps text-[0.65rem] text-fog-dim">
+        <span className="label-caps text-[0.65rem] text-text-dim">
           Name · business · city
         </span>
       </div>

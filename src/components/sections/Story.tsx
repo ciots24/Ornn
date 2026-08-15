@@ -54,19 +54,19 @@ export function Story() {
 
         {/* The three conditions that used to gate winning at Meta ads. */}
         <Reveal className="mt-7">
-          <ul className="space-y-0 overflow-hidden rounded-2xl border border-ink-500 bg-ink-700">
+          <ul className="space-y-0 overflow-hidden rounded-2xl border border-line bg-surface-raised">
             {story.requirements.map((item, index) => (
               <li
                 key={item}
                 className={`flex items-start gap-3.5 px-5 py-4 ${
-                  index > 0 ? "border-t border-ink-500" : ""
+                  index > 0 ? "border-t border-line" : ""
                 }`}
               >
                 <span
                   aria-hidden
                   className="mt-[0.45em] h-px w-4 shrink-0 bg-brand"
                 />
-                <span className="text-[1.0625rem] leading-snug text-paper/90">
+                <span className="text-[1.0625rem] leading-snug text-text/90">
                   {item}
                 </span>
               </li>
@@ -79,7 +79,7 @@ export function Story() {
         </Reveal>
 
         <Reveal className="mt-9 rounded-2xl border border-brand/35 bg-brand/[0.07] p-6 sm:p-8">
-          <Prose lines={story.pivot} className="text-paper/90" />
+          <Prose lines={story.pivot} className="text-text/90" />
         </Reveal>
 
         <CtaBlock className="mt-10" />

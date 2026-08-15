@@ -24,26 +24,26 @@ export function Pricing() {
         </Reveal>
 
         {/* Value stack — the total is summed from the data, never typed by hand. */}
-        <Reveal className="mt-10 overflow-hidden rounded-2xl border border-ink-500 bg-ink-700">
+        <Reveal className="mt-10 overflow-hidden rounded-2xl border border-line bg-surface-raised">
           <ul>
             {valueStack.map((item) => (
               <li
                 key={item.name}
-                className="flex items-baseline justify-between gap-4 border-b border-ink-500 px-5 py-4"
+                className="flex items-baseline justify-between gap-4 border-b border-line px-5 py-4"
               >
-                <span className="text-[0.9375rem] leading-snug text-paper/85">
+                <span className="text-[0.9375rem] leading-snug text-text/85">
                   {item.name}
                 </span>
-                <span className="tnum shrink-0 font-bold text-fog">
+                <span className="tnum shrink-0 font-bold text-text-muted">
                   {peso(item.value)}
                 </span>
               </li>
             ))}
           </ul>
 
-          <div className="flex items-baseline justify-between gap-4 bg-ink-600 px-5 py-5">
-            <span className="label-caps text-fog">Total value</span>
-            <span className="tnum text-2xl font-black text-paper">
+          <div className="flex items-baseline justify-between gap-4 bg-surface-raised px-5 py-5">
+            <span className="label-caps text-text-muted">Total value</span>
+            <span className="tnum text-2xl font-black text-text">
               {peso(totalValue)}+
             </span>
           </div>
@@ -54,14 +54,14 @@ export function Pricing() {
         </Reveal>
 
         <Reveal className="mt-9">
-          <p className="text-lg font-bold text-fog-dim">
+          <p className="text-lg font-bold text-text-dim">
             And this does not cost {peso(totalValue)}.
           </p>
           <ul className="mt-3 space-y-1.5">
             {pricing.ladder.map((line) => (
               <li
                 key={line}
-                className="text-xl font-black leading-tight text-fog-dim sm:text-2xl"
+                className="text-xl font-black leading-tight text-text-dim sm:text-2xl"
               >
                 {line}
               </li>
@@ -73,7 +73,7 @@ export function Pricing() {
       {/* The reveal */}
       <Container width="wide" className="mt-14">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-brand/45 bg-ink-800">
+          <div className="relative overflow-hidden rounded-3xl border border-brand/45 bg-surface-sunken">
             <div aria-hidden className="absolute inset-0 grid-veil" />
             <div
               aria-hidden
@@ -81,25 +81,25 @@ export function Pricing() {
             />
 
             <div className="relative px-6 py-12 text-center sm:px-10 sm:py-16">
-              <h3 className="display-md mx-auto max-w-2xl text-balance text-paper">
+              <h3 className="display-md mx-auto max-w-2xl text-balance text-text">
                 {pricing.title}
               </h3>
-              <p className="mx-auto mt-3 max-w-md text-balance text-fog">
+              <p className="mx-auto mt-3 max-w-md text-balance text-text-muted">
                 {pricing.subtitle}
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 sm:gap-x-16">
-                <span className="tnum text-3xl font-black text-fog-dim line-through decoration-brand decoration-[3px] sm:text-4xl">
+                <span className="tnum text-3xl font-black text-text-dim line-through decoration-brand decoration-[3px] sm:text-4xl">
                   {peso(offer.price.regular)}
                 </span>
                 <Marker shape="circle">
-                  <span className="tnum text-[4rem] font-black leading-[0.9] tracking-[-0.045em] text-paper sm:text-[5.5rem]">
+                  <span className="tnum text-[4rem] font-black leading-[0.9] tracking-[-0.045em] text-text sm:text-[5.5rem]">
                     {peso(offer.price.founding)}
                   </span>
                 </Marker>
               </div>
 
-              <p className="label-caps mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-paper">
+              <p className="label-caps mt-6 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-on-brand">
                 {offer.price.discountLabel} · Founding price
               </p>
 
@@ -109,7 +109,7 @@ export function Pricing() {
                 <CtaButton href={offer.checkoutUrl} className="max-w-lg">
                   Access the Ads2Sawa System
                 </CtaButton>
-                <p className="label-caps mt-4 text-fog">
+                <p className="label-caps mt-4 text-text-muted">
                   One-time payment · Instant access · {offer.guarantee.label}
                 </p>
               </div>
@@ -123,7 +123,7 @@ export function Pricing() {
           <Prose lines={pricing.reveal} />
         </Reveal>
         <Reveal className="mt-6 border-l-2 border-brand pl-6">
-          <Prose lines={pricing.catch} className="text-paper/85" />
+          <Prose lines={pricing.catch} className="text-text/85" />
         </Reveal>
       </Container>
     </Section>

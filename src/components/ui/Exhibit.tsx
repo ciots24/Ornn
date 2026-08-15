@@ -64,13 +64,13 @@ export function Exhibit({
     <figure
       // @container lets the zoom button drop its text label on narrow cards,
       // where the caption needs every pixel it can get.
-      className={`group @container overflow-hidden rounded-2xl border border-ink-500 bg-ink-600 transition-colors duration-300 hover:border-ink-400 ${className}`}
+      className={`group @container overflow-hidden rounded-2xl border border-line bg-surface-raised transition-colors duration-300 hover:border-line-strong ${className}`}
     >
-      <figcaption className="flex items-center gap-2 border-b border-ink-500 py-2 pl-3.5 pr-2">
+      <figcaption className="flex items-center gap-2 border-b border-line py-2 pl-3.5 pr-2">
         <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
         {/* Narrow cards get tighter tracking rather than a shorter label —
             the caption is what tells you what the screenshot proves. */}
-        <span className="label-caps truncate tracking-[0.07em] text-paper/85 @[20rem]:tracking-[0.16em]">
+        <span className="label-caps truncate tracking-[0.07em] text-text/85 @[20rem]:tracking-[0.16em]">
           {image.caption}
         </span>
         {/* Plain server-rendered trigger. The one <ImageLightbox> in the
@@ -81,7 +81,7 @@ export function Exhibit({
           data-zoom-alt={image.alt}
           data-zoom-caption={image.caption}
           aria-label={`View ${image.caption} at full size`}
-          className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full border border-ink-400 px-2 py-1 text-fog transition-colors duration-200 hover:border-brand hover:text-brand-hi @[20rem]:px-2.5"
+          className="ml-auto flex shrink-0 items-center gap-1.5 rounded-full border border-line-strong px-2 py-1 text-text-muted transition-colors duration-200 hover:border-brand hover:text-accent-text @[20rem]:px-2.5"
         >
           <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5">
             <circle cx="8.75" cy="8.75" r="5.25" stroke="currentColor" strokeWidth="1.8" />
@@ -98,7 +98,7 @@ export function Exhibit({
         </button>
       </figcaption>
 
-      <div className="bg-ink-700 p-2">
+      <div className="bg-surface-raised p-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image.src}
@@ -115,7 +115,7 @@ export function Exhibit({
       </div>
 
       {image.note && (
-        <p className="border-t border-ink-500 px-3.5 py-2.5 text-[0.8125rem] leading-snug text-fog-dim">
+        <p className="border-t border-line px-3.5 py-2.5 text-[0.8125rem] leading-snug text-text-dim">
           {image.note}
         </p>
       )}

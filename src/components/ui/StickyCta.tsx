@@ -64,10 +64,10 @@ export function StickyCta() {
 
   const price = (
     <span className="flex items-baseline gap-1.5">
-      <span className="tnum text-sm text-fog-dim line-through">
+      <span className="tnum text-sm text-text-dim line-through">
         {peso(offer.price.regular)}
       </span>
-      <span className="tnum text-xl font-black leading-none text-paper">
+      <span className="tnum text-xl font-black leading-none text-text">
         {peso(offer.price.founding)}
       </span>
     </span>
@@ -77,7 +77,7 @@ export function StickyCta() {
     <>
       {/* Phones */}
       <div
-        className={`fixed inset-x-0 bottom-0 z-50 border-t border-ink-500 bg-ink-900/95 backdrop-blur-md transition-transform duration-300 md:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-50 border-t border-line bg-surface/95 backdrop-blur-md transition-transform duration-300 md:hidden ${
           visible ? "translate-y-0" : "translate-y-full"
         }`}
         inert={!visible}
@@ -86,14 +86,14 @@ export function StickyCta() {
         <div className="flex items-center gap-3 px-4 py-3">
           <div className="flex min-w-0 flex-col gap-0.5">
             {price}
-            <span className="label-caps text-[0.6rem] text-fog-dim">
+            <span className="label-caps text-[0.6rem] text-text-dim">
               {offer.price.discountLabel} today
             </span>
           </div>
           <Link
             href={offer.checkoutUrl}
             prefetch
-            className="btn-primary flex min-h-[3.25rem] flex-1 items-center justify-center gap-2 rounded-full px-4 text-[0.9375rem] font-black text-paper"
+            className="btn-primary flex min-h-[3.25rem] flex-1 items-center justify-center gap-2 rounded-full px-4 text-[0.9375rem] font-black text-on-brand"
           >
             Get access
             <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-4 w-4">
@@ -111,20 +111,20 @@ export function StickyCta() {
 
       {/* Desktop */}
       <div
-        className={`fixed inset-x-0 top-0 z-50 hidden border-b border-ink-500 bg-ink-900/92 backdrop-blur-md transition-transform duration-300 md:block ${
+        className={`fixed inset-x-0 top-0 z-50 hidden border-b border-line bg-surface/92 backdrop-blur-md transition-transform duration-300 md:block ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
         inert={!visible}
       >
         <div className="mx-auto flex max-w-[72rem] items-center gap-6 px-6 py-3">
-          <span className="label-caps text-paper">
+          <span className="label-caps text-text">
             {offer.brand}
-            <span className="mx-2 text-ink-400">/</span>
-            <span className="text-fog">{offer.product}</span>
+            <span className="mx-2 text-line-strong">/</span>
+            <span className="text-text-muted">{offer.product}</span>
           </span>
 
           <span className="ml-auto flex items-center gap-2.5">
-            <span className="label-caps text-fog-dim">
+            <span className="label-caps text-text-dim">
               Founding price ends {offer.deadlineLabel}
             </span>
             {price}
@@ -133,7 +133,7 @@ export function StickyCta() {
           <Link
             href={offer.checkoutUrl}
             prefetch
-            className="btn-primary btn-shine group flex min-h-[2.75rem] items-center gap-2 rounded-full px-6 text-[0.9375rem] font-black text-paper hover:btn-primary-hover"
+            className="btn-primary btn-shine group flex min-h-[2.75rem] items-center gap-2 rounded-full px-6 text-[0.9375rem] font-black text-on-brand hover:btn-primary-hover"
           >
             Get access
             <svg

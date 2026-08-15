@@ -36,7 +36,7 @@ export function CtaButton({
   // StickyCta watches every [data-cta] and steps aside while one is on screen.
   const props = {
     "data-cta": "",
-    className: `btn-primary btn-shine group inline-flex w-full items-center justify-center gap-3 rounded-full text-center font-black tracking-[-0.01em] text-paper hover:btn-primary-hover active:translate-y-0 sm:w-auto ${sizes[size]} ${className}`,
+    className: `btn-primary btn-shine group inline-flex w-full items-center justify-center gap-3 rounded-full text-center font-black tracking-[-0.01em] text-on-brand hover:btn-primary-hover active:translate-y-0 sm:w-auto ${sizes[size]} ${className}`,
   };
 
   const content = (
@@ -87,7 +87,7 @@ export function GhostButton({
   return (
     <a
       href={href}
-      className={`inline-flex min-h-[3rem] items-center justify-center rounded-full border border-ink-400 px-6 text-sm font-medium text-fog transition-colors duration-200 hover:border-fog-dim hover:text-paper ${className}`}
+      className={`inline-flex min-h-[3rem] items-center justify-center rounded-full border border-line-strong px-6 text-sm font-medium text-text-muted transition-colors duration-200 hover:border-line-strong hover:text-text ${className}`}
     >
       {children}
     </a>

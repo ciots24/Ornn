@@ -21,7 +21,7 @@ export function Speed() {
 
         {/* Clock times, not step numbers — the order is a real afternoon. */}
         <Reveal className="mt-10">
-          <ol className="relative space-y-0 border-l border-ink-500 pl-0">
+          <ol className="relative space-y-0 border-l border-line pl-0">
             {speed.timeline.map((entry, index) => {
               const isLast = index === speed.timeline.length - 1;
               return (
@@ -29,15 +29,15 @@ export function Speed() {
                   <span
                     aria-hidden
                     className={`absolute -left-[5px] top-[0.4rem] h-[9px] w-[9px] rounded-full ${
-                      isLast ? "bg-brand ring-4 ring-brand/20" : "bg-ink-400"
+                      isLast ? "bg-brand ring-4 ring-brand/20" : "bg-line-strong"
                     }`}
                   />
-                  <span className="label-caps tnum w-[4.5rem] shrink-0 pt-1 text-fog-dim">
+                  <span className="label-caps tnum w-[4.5rem] shrink-0 pt-1 text-text-dim">
                     {entry.time}
                   </span>
                   <span
                     className={`text-[1.0625rem] leading-snug ${
-                      isLast ? "font-bold text-paper" : "text-paper/85"
+                      isLast ? "font-bold text-text" : "text-text/85"
                     }`}
                   >
                     {entry.event}

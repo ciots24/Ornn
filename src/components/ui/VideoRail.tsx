@@ -23,8 +23,8 @@ export function VideoRail({
   return (
     <div className={className}>
       <div className="flex items-baseline justify-between gap-4">
-        <p className="label-caps text-brand-hi">{label}</p>
-        <p className="label-caps text-fog-dim">
+        <p className="label-caps text-accent-text">{label}</p>
+        <p className="label-caps text-text-dim">
           Swipe <span aria-hidden>→</span>
         </p>
       </div>

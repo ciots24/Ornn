@@ -37,7 +37,7 @@ export function AssetSlot({
   if (image) {
     return (
       <div
-        className={`overflow-hidden rounded-2xl border border-ink-500 bg-ink-700 p-2 ${className}`}
+        className={`overflow-hidden rounded-2xl border border-line bg-surface-raised p-2 ${className}`}
       >
         <Image
           src={image.src}
@@ -55,13 +55,13 @@ export function AssetSlot({
   return (
     <div
       style={{ aspectRatio: slot.ratio }}
-      className={`flex w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-ink-400 bg-ink-800/60 px-5 py-8 text-center ${className}`}
+      className={`flex w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-line-strong bg-surface-sunken/60 px-5 py-8 text-center ${className}`}
     >
       <svg
         aria-hidden
         viewBox="0 0 24 24"
         fill="none"
-        className="h-6 w-6 text-fog-dim"
+        className="h-6 w-6 text-text-dim"
       >
         <rect
           x="3"
@@ -80,8 +80,8 @@ export function AssetSlot({
         />
         <circle cx="15.2" cy="9.2" r="1.4" fill="currentColor" />
       </svg>
-      <p className="label-caps text-fog">{slot.label}</p>
-      <p className="max-w-[22rem] text-[0.8125rem] leading-snug text-fog-dim">
+      <p className="label-caps text-text-muted">{slot.label}</p>
+      <p className="max-w-[22rem] text-[0.8125rem] leading-snug text-text-dim">
         {slot.spec}
       </p>
     </div>

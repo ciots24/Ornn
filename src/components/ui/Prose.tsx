@@ -15,7 +15,7 @@ export function Prose({
 }) {
   const sizing =
     size === "lead"
-      ? "text-lg leading-[1.6] sm:text-xl sm:leading-[1.55] text-paper/90"
+      ? "text-lg leading-[1.6] sm:text-xl sm:leading-[1.55] text-text/90"
       : "prose-line";
 
   return (

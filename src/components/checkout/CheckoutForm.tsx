@@ -109,10 +109,10 @@ export function CheckoutForm() {
             {bumps.length > 0 && (
               <section aria-labelledby="bumps-heading" className="space-y-3">
                 <div>
-                  <h2 id="bumps-heading" className="label-caps text-brand-hi">
+                  <h2 id="bumps-heading" className="label-caps text-accent-text">
                     {checkout.bumps.title}
                   </h2>
-                  <p className="mt-1.5 text-[0.8125rem] text-fog-dim">
+                  <p className="mt-1.5 text-[0.8125rem] text-text-dim">
                     {checkout.bumps.note}
                   </p>
                 </div>
@@ -136,7 +136,7 @@ export function CheckoutForm() {
                     className={`flex cursor-pointer items-center gap-3.5 rounded-xl border p-4 transition-colors duration-200 ${
                       method === option.id
                         ? "border-brand bg-brand/[0.08]"
-                        : "border-ink-500 bg-ink-800/60 hover:border-ink-400"
+                        : "border-line bg-surface-sunken/60 hover:border-line-strong"
                     }`}
                   >
                     <input
@@ -149,7 +149,7 @@ export function CheckoutForm() {
                     />
                     <span
                       aria-hidden
-                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-ink-400 transition-colors duration-200 peer-checked:border-brand peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-hi"
+                      className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-line-strong transition-colors duration-200 peer-checked:border-brand peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brand-hi"
                     >
                       <span
                         className={`h-2.5 w-2.5 rounded-full transition-colors duration-200 ${
@@ -158,10 +158,10 @@ export function CheckoutForm() {
                       />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block font-bold leading-tight text-paper">
+                      <span className="block font-bold leading-tight text-text">
                         {option.label}
                       </span>
-                      <span className="label-caps block text-[0.6rem] text-fog-dim">
+                      <span className="label-caps block text-[0.6rem] text-text-dim">
                         {option.hint}
                       </span>
                     </span>
@@ -172,7 +172,7 @@ export function CheckoutForm() {
 
               {/* Naming the processor is the reassurance — it's the reason we
                   never handle a card number. */}
-              <p className="mt-4 flex items-center gap-3 rounded-xl border border-ink-500 bg-ink-800/60 px-3.5 py-3">
+              <p className="mt-4 flex items-center gap-3 rounded-xl border border-line bg-surface-sunken/60 px-3.5 py-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={checkout.payment.gateway.logo}
@@ -181,7 +181,7 @@ export function CheckoutForm() {
                   height={28}
                   className="h-6 w-auto shrink-0 rounded"
                 />
-                <span className="text-[0.75rem] leading-snug text-fog">
+                <span className="text-[0.75rem] leading-snug text-text-muted">
                   {checkout.payment.gateway.note}
                 </span>
               </p>
@@ -198,7 +198,7 @@ export function CheckoutForm() {
             {status.state === "error" && (
               <p
                 role="alert"
-                className="rounded-xl border border-brand/50 bg-brand/10 px-4 py-3 text-center text-[0.875rem] text-paper"
+                className="rounded-xl border border-brand/50 bg-brand/10 px-4 py-3 text-center text-[0.875rem] text-text"
               >
                 {status.message}
               </p>
@@ -209,7 +209,7 @@ export function CheckoutForm() {
               type="submit"
               data-checkout-submit=""
               disabled={status.state === "submitting"}
-              className="btn-primary btn-shine group min-h-[3.75rem] w-full rounded-full px-5 py-3 text-base font-black text-paper hover:btn-primary-hover disabled:cursor-wait disabled:opacity-80 sm:min-h-[4rem] sm:px-6 sm:text-xl"
+              className="btn-primary btn-shine group min-h-[3.75rem] w-full rounded-full px-5 py-3 text-base font-black text-on-brand hover:btn-primary-hover disabled:cursor-wait disabled:opacity-80 sm:min-h-[4rem] sm:px-6 sm:text-xl"
             >
               {status.state === "submitting" ? (
                 "Taking you to payment…"
@@ -242,13 +242,13 @@ export function CheckoutForm() {
             {/* One line of reassurance under the button, not four stacked
                 blocks. Terms and the statement descriptor are legal fine
                 print — they belong small and together, not competing. */}
-            <p className="label-caps text-center text-fog-dim">
+            <p className="label-caps text-center text-text-dim">
               {checkout.submit.sublabel}
             </p>
 
-            <p className="text-center text-[0.75rem] leading-relaxed text-fog-dim">
+            <p className="text-center text-[0.75rem] leading-relaxed text-text-dim">
               {checkout.submit.terms} Shows on your statement as{" "}
-              <span className="font-bold text-fog">
+              <span className="font-bold text-text-muted">
                 {offer.support.billingDescriptor}
               </span>
               .
@@ -275,7 +275,7 @@ function PaymentMark({ logo, label }: { logo: string | null; label: string }) {
     return (
       <span
         aria-hidden
-        className="flex h-7 w-[3.25rem] shrink-0 items-center justify-center rounded-md border border-ink-400 bg-ink-900 text-fog"
+        className="flex h-7 w-[3.25rem] shrink-0 items-center justify-center rounded-md border border-line-strong bg-surface-alt text-text-muted"
       >
         <svg viewBox="0 0 24 16" fill="none" className="h-4 w-4">
           <rect
@@ -321,11 +321,11 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-ink-500 bg-ink-700 p-5 sm:p-6">
-      <h2 className="text-lg font-black tracking-[-0.02em] text-paper">
+    <section className="rounded-2xl border border-line bg-surface-raised p-5 sm:p-6">
+      <h2 className="text-lg font-black tracking-[-0.02em] text-text">
         {title}
       </h2>
-      <p className="mt-1.5 text-[0.875rem] leading-relaxed text-fog">{note}</p>
+      <p className="mt-1.5 text-[0.875rem] leading-relaxed text-text-muted">{note}</p>
       <div className="mt-5">{children}</div>
     </section>
   );
@@ -345,7 +345,7 @@ function Field({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
-      <label htmlFor={name} className="label-caps block text-fog">
+      <label htmlFor={name} className="label-caps block text-text-muted">
         {label}
       </label>
       <input
@@ -353,7 +353,7 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
-        className="mt-2 block min-h-[3.25rem] w-full rounded-xl border border-ink-400 bg-ink-800 px-4 text-[1rem] text-paper transition-colors duration-200 placeholder:text-fog-dim/70 hover:border-fog-dim focus:border-brand focus:outline-none"
+        className="mt-2 block min-h-[3.25rem] w-full rounded-xl border border-line-strong bg-surface-sunken px-4 text-[1rem] text-text transition-colors duration-200 placeholder:text-text-dim/70 hover:border-line-strong focus:border-brand focus:outline-none"
         {...rest}
       />
     </div>

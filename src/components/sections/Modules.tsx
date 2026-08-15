@@ -16,7 +16,15 @@ import { peso } from "@/content/offer";
 
 export function Modules() {
   return (
-    <Section id="whats-inside" tone="raised">
+    /* The one light section on the page. The brand's own creatives split the
+       same way — dark carries the problem, paper carries the system — so the
+       surface flip is doing narrative work, not decoration. It also breaks the
+       longest scroll on the page in exactly the right place. */
+    <Section
+      id="whats-inside"
+      tone="paper"
+      className="border-y border-line-strong"
+    >
       <Container width="wide">
         <Reveal className="max-w-2xl">
           <Eyebrow>What you get</Eyebrow>
@@ -29,7 +37,7 @@ export function Modules() {
         <div className="mt-12 space-y-4">
           {modules.map((item, index) => (
             <Reveal key={item.id}>
-              <article className="overflow-hidden rounded-3xl border border-ink-500 bg-ink-700">
+              <article className="overflow-hidden rounded-3xl border border-line bg-surface-raised">
                 <div
                   className={`grid items-center gap-0 lg:grid-cols-2 ${
                     index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
@@ -40,21 +48,21 @@ export function Modules() {
                     {/* The mark says what this module IS, so seven cards stay
                         scannable instead of reading as one wall of text. */}
                     <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-ink-400 bg-ink-800 text-brand-hi">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-surface-sunken text-accent-text">
                         <Icon name={item.icon} className="h-5 w-5" />
                       </span>
-                      <p className="label-caps text-brand">
+                      <p className="label-caps text-accent-text">
                         {peso(item.value)} value
                       </p>
                     </div>
-                    <h3 className="mt-3 text-2xl font-black leading-[1.1] tracking-[-0.025em] text-paper sm:text-3xl">
+                    <h3 className="mt-3 text-2xl font-black leading-[1.1] tracking-[-0.025em] text-text sm:text-3xl">
                       {item.name}
                     </h3>
-                    <p className="mt-3.5 text-[0.9375rem] leading-[1.65] text-fog">
+                    <p className="mt-3.5 text-[0.9375rem] leading-[1.65] text-text-muted">
                       {item.summary}
                     </p>
 
-                    <ul className="mt-6 space-y-3 border-t border-ink-500 pt-6">
+                    <ul className="mt-6 space-y-3 border-t border-line pt-6">
                       {item.benefits.map((benefit) => (
                         <li key={benefit} className="flex gap-3">
                           <span className="mt-[0.35em] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand/20 text-brand">
@@ -73,20 +81,20 @@ export function Modules() {
                               />
                             </svg>
                           </span>
-                          <span className="text-[0.9375rem] leading-[1.6] text-paper/85">
+                          <span className="text-[0.9375rem] leading-[1.6] text-text/85">
                             {benefit}
                           </span>
                         </li>
                       ))}
                     </ul>
 
-                    <div className="mt-6 border-t border-ink-500 pt-5">
+                    <div className="mt-6 border-t border-line pt-5">
                       <ShiftLine from={item.shift.from} to={item.shift.to} />
                     </div>
                   </div>
 
                   {/* Asset */}
-                  <div className="border-t border-ink-500 bg-ink-800 p-5 sm:p-7 lg:h-full lg:border-l lg:border-t-0 lg:p-8">
+                  <div className="border-t border-line bg-surface-sunken p-5 sm:p-7 lg:h-full lg:border-l lg:border-t-0 lg:p-8">
                     <div className="flex h-full w-full items-center justify-center">
                       {/* The image-ads module shows the ads it actually made —
                           the module's promise is "10 image ads in an hour", so
