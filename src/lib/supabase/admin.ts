@@ -1,4 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
+import { serverEnv } from "@/lib/env";
 
 /**
  * Service-role Supabase client. **Server-side only.**
@@ -13,8 +14,9 @@ import { createClient } from "@supabase/supabase-js";
  *   SUPABASE_SERVICE_ROLE_KEY=eyJ...
  */
 export function createAdminClient() {
+  // The URL is public and safe to bundle; the service-role key is not.
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const serviceRoleKey = serverEnv("SUPABASE_SERVICE_ROLE_KEY");
 
   if (!url || !serviceRoleKey) return null;
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { getOrder } from "@/lib/orders";
+import { reconcileOrder } from "@/lib/orders";
 import { offer, peso } from "@/content/offer";
 
 export const metadata: Metadata = {
@@ -27,7 +27,9 @@ export default async function CheckoutSuccessPage({
   searchParams: Promise<{ ref?: string }>;
 }) {
   const { ref } = await searchParams;
-  const order = ref ? await getOrder(ref) : null;
+  // Asks Xendit directly if the order is still pending, so a buyer arriving
+  // here sees the truth even though no webhook reached us.
+  const order = ref ? await reconcileOrder(ref) : null;
   const paid = order?.status === "paid";
 
   return (

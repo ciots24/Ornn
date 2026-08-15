@@ -1,4 +1,5 @@
 import { createAdminClient } from "@/lib/supabase/admin";
+import { fetchInvoiceState } from "@/lib/xendit";
 
 export type OrderStatus = "pending" | "paid" | "expired" | "failed";
 
@@ -183,6 +184,82 @@ export async function applyInvoiceCallback(
     outcome: "ignored",
     reason: `Nothing to do for status ${xenditStatus || "(none)"}.`,
   };
+}
+
+/**
+ * Asks Xendit what really happened to a pending order and applies the answer.
+ *
+ * This is the pull-based counterpart to the webhook, for when the webhook slot
+ * isn't available to us. It reuses `applyInvoiceCallback` so both paths share
+ * one set of state-transition rules — including the guard that stops a late
+ * expiry from undoing a payment.
+ */
+export async function reconcileOrder(externalId: string): Promise<Order | null> {
+  const supabase = createAdminClient();
+  if (!supabase) return null;
+
+  const { data: order } = await supabase
+    .from("orders")
+    .select("external_id, status, xendit_invoice_id")
+    .eq("external_id", externalId)
+    .maybeSingle();
+
+  // Only pending orders are worth a round trip; anything settled is final.
+  if (!order || order.status !== "pending") return getOrder(externalId);
+
+  const state = await fetchInvoiceState({
+    invoiceId: order.xendit_invoice_id,
+    externalId,
+  });
+
+  if (!state) return getOrder(externalId);
+
+  await applyInvoiceCallback({
+    external_id: externalId,
+    id: state.id,
+    status: state.status,
+    paid_amount: state.paidAmount,
+    payment_channel: state.paymentChannel,
+    paid_at: state.paidAt,
+    // Marks the row as reconciled rather than webhook-driven, so the two are
+    // distinguishable when auditing later.
+    source: "reconcile",
+  });
+
+  return getOrder(externalId);
+}
+
+/**
+ * Sweeps recent pending orders. Catches buyers who paid and never came back —
+ * the case a thank-you page can never see.
+ */
+export async function reconcilePendingOrders(limit = 25): Promise<{
+  checked: number;
+  paid: number;
+}> {
+  const supabase = createAdminClient();
+  if (!supabase) return { checked: 0, paid: 0 };
+
+  // A day is well past Xendit's invoice expiry, so older rows will never flip.
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+
+  const { data: pending } = await supabase
+    .from("orders")
+    .select("external_id")
+    .eq("status", "pending")
+    .gte("created_at", since)
+    .order("created_at", { ascending: false })
+    .limit(limit);
+
+  if (!pending?.length) return { checked: 0, paid: 0 };
+
+  let paid = 0;
+  for (const row of pending) {
+    const order = await reconcileOrder(row.external_id);
+    if (order?.status === "paid") paid += 1;
+  }
+
+  return { checked: pending.length, paid };
 }
 
 /** Looks up an order so the thank-you page can show what actually happened. */

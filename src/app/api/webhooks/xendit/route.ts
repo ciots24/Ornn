@@ -1,4 +1,5 @@
 import { applyInvoiceCallback } from "@/lib/orders";
+import { serverEnv } from "@/lib/env";
 
 /**
  * Xendit invoice webhook.
@@ -18,7 +19,7 @@ import { applyInvoiceCallback } from "@/lib/orders";
  *   XENDIT_CALLBACK_TOKEN=...   (Dashboard → Settings → Developers → Webhooks)
  */
 export async function POST(request: Request) {
-  const expectedToken = process.env.XENDIT_CALLBACK_TOKEN;
+  const expectedToken = serverEnv("XENDIT_CALLBACK_TOKEN");
 
   if (!expectedToken) {
     // Refuse rather than accept unverified callbacks — an open endpoint that

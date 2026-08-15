@@ -1,6 +1,7 @@
 import { bumps, orderTotal } from "@/content/checkout";
 import { offer, peso } from "@/content/offer";
 import { attachInvoiceId, createPendingOrder, newExternalId } from "@/lib/orders";
+import { serverEnv } from "@/lib/env";
 
 /**
  * Creates a Xendit invoice and hands the buyer its hosted payment page.
@@ -17,10 +18,20 @@ import { attachInvoiceId, createPendingOrder, newExternalId } from "@/lib/orders
  * Required environment variable (set it in the Cloudflare dashboard, or in
  * `.dev.vars` locally — never commit it):
  *
- *   XENDIT_SECRET_KEY=xnd_production_...
+ *   XENDIT_SECRET_KEY=...
+ *
+ * Xendit issues separate test and live keys on the same account. This code
+ * doesn't care which one it gets — swapping the key is what moves you between
+ * test and live, so start on the test key and change nothing else.
  *
  * Optional:
- *   NEXT_PUBLIC_SITE_URL=https://ads2sawa.ornn.ph   (for success/failure returns)
+ *   SITE_URL=https://ads2sawa.ornn.ph   (forces the post-payment return origin)
+ *
+ * Deliberately NOT called NEXT_PUBLIC_SITE_URL: Next inlines NEXT_PUBLIC_* at
+ * build time, so the build machine's value — localhost, during development —
+ * would be baked into the deployed worker and every buyer would be redirected
+ * to a dead link after paying. Read it at runtime instead, and fall back to the
+ * origin the request actually arrived on, which is correct on Workers.
  */
 
 const XENDIT_INVOICE_ENDPOINT = "https://api.xendit.co/v2/invoices";
@@ -58,7 +69,7 @@ export async function POST(request: Request) {
   const selected = (body.bumps ?? []).filter((id) => validBumpIds.has(id));
   const amount = orderTotal(selected);
 
-  const secretKey = process.env.XENDIT_SECRET_KEY;
+  const secretKey = serverEnv("XENDIT_SECRET_KEY");
 
   if (!secretKey) {
     // Fail loudly rather than pretending the order went through.
@@ -73,8 +84,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin;
+  const siteUrl = serverEnv("SITE_URL") ?? new URL(request.url).origin;
 
   // Record the order before handing the buyer over, so a payment can never
   // arrive for something we have no row for.

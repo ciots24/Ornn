@@ -105,7 +105,9 @@ Three places, all needing the same values — this trips people up:
 XENDIT_SECRET_KEY           Xendit → Settings → Developers → API Keys
 XENDIT_CALLBACK_TOKEN       Xendit → Settings → Developers → Webhooks
 SUPABASE_SERVICE_ROLE_KEY   Supabase → Project Settings → API (server-only)
-NEXT_PUBLIC_SITE_URL        https://your-domain — builds the redirect URLs
+SITE_URL                    https://your-domain — post-payment return origin.
+                            Must NOT be named NEXT_PUBLIC_*: those are inlined at
+                            build time, which would bake localhost into the deploy.
 ```
 
 Register the webhook in Xendit at `https://<your-domain>/api/webhooks/xendit` for the
