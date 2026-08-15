@@ -48,13 +48,9 @@
   --color-paper: #ffffff;
 
   /* --- Semantic surface tokens ------------------------------------------
-     Components reference these and never the ramps, so the same card works on
-     either surface. Declared here with their dark values purely so Tailwind
-     generates the utilities; the [data-surface] blocks below redeclare them.
-
-     They must be real values, not var() aliases: a custom property is
-     substituted once where it's declared, and descendants inherit the
-     resolved colour — so an alias chain rooted at :root can never flip. */
+     Components reference these and never the ramps, so a card doesn't need to
+     know which band of the page it landed on. Four steps: the page floor, an
+     alternating band, inset wells, and cards. */
   --color-surface: #050504;
   --color-surface-alt: #0a0a09;
   --color-surface-sunken: #0f0f0e;
@@ -72,39 +68,6 @@
   /* Section rhythm — one knob for the whole page's vertical tempo */
   --spacing-band: 4.5rem;
   --spacing-band-lg: 7rem;
-}
-
-/* Dark is the default; a section opts into light with data-surface="light".
-   Four steps, darkest to lightest: the page floor, an alternating band, inset
-   wells, and cards. On paper the order inverts — cards float to white. */
-[data-surface="dark"] {
-  --color-surface: #050504;
-  --color-surface-alt: #0a0a09;
-  --color-surface-sunken: #0f0f0e;
-  --color-surface-raised: #151513;
-  --color-line: #262622;
-  --color-line-strong: #33332e;
-  --color-text: #ffffff;
-  --color-text-muted: #a3a3ab;  /* 8.4:1 on the lightest dark surface */
-  --color-text-dim: #8b8b95;    /* 5.9:1 on the lightest dark surface */
-  --color-accent-text: #ff4d43;
-  --veil: 255 255 255;
-  color-scheme: dark;
-}
-
-[data-surface="light"] {
-  --color-surface: #fbfbfb;
-  --color-surface-alt: #f4f4f3;
-  --color-surface-sunken: #ececea;
-  --color-surface-raised: #ffffff;
-  --color-line: #e2e2df;
-  --color-line-strong: #cfcfca;
-  --color-text: #0c0c0b;
-  --color-text-muted: #4d4d54;  /* 8.0:1 on paper */
-  --color-text-dim: #57575e;    /* 6.9:1 on paper */
-  --color-accent-text: #c81414;
-  --veil: 12 12 11;
-  color-scheme: light;
 }
 
 :root {
@@ -300,6 +263,17 @@
 @utility rail-item {
   flex: 0 0 auto;
   scroll-snap-align: start;
+}
+
+/* The red bloom behind a section's headline. Used on the three sections that
+   are events rather than steps — the hero, the inventory, the last call — so
+   the page has three points of heat and no more. */
+@utility brand-glow {
+  background: radial-gradient(
+    closest-side,
+    rgb(227 27 27 / 0.13),
+    transparent
+  );
 }
 
 /* Hairline grid used behind the hero and the price reveal. Draws in the

@@ -10,7 +10,7 @@ export function Hero() {
       <div aria-hidden className="absolute inset-0 grid-veil" />
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full" style={{background:"radial-gradient(closest-side, rgb(229 57 53 / 0.12), transparent)"}}
+        className="absolute -top-40 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full brand-glow"
       />
 
       <Container width="wide" className="relative">

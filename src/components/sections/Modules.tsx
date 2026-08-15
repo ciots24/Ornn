@@ -12,20 +12,26 @@ import { VideoRail } from "@/components/ui/VideoRail";
 import { adCreatives } from "@/content/ads";
 import { scriptProofClips } from "@/content/videos";
 import { modules } from "@/content/copy";
-import { peso } from "@/content/offer";
+import { offer, peso, totalValue } from "@/content/offer";
 
 export function Modules() {
   return (
-    /* The one light section on the page. The brand's own creatives split the
-       same way — dark carries the problem, paper carries the system — so the
-       surface flip is doing narrative work, not decoration. It also breaks the
-       longest scroll on the page in exactly the right place. */
+    /* Given the hero's own treatment — grid, bloom, hairline edges — because
+       this is the third event on the page, not another step. The tone stays in
+       the alternating rhythm so the section still hands off cleanly to its
+       neighbours; the texture is what marks it. */
     <Section
       id="whats-inside"
-      tone="paper"
-      className="border-y border-line-strong"
+      tone="raised"
+      className="overflow-hidden border-y border-line"
     >
-      <Container width="wide">
+      <div aria-hidden className="absolute inset-0 grid-veil" />
+      <div
+        aria-hidden
+        className="brand-glow pointer-events-none absolute -top-52 left-1/2 h-[34rem] w-[52rem] -translate-x-1/2 rounded-full"
+      />
+
+      <Container width="wide" className="relative">
         <Reveal className="max-w-2xl">
           <Eyebrow>What you get</Eyebrow>
           <Heading className="mt-5">
@@ -34,28 +40,57 @@ export function Modules() {
           </Heading>
         </Reveal>
 
-        <div className="mt-12 space-y-4">
+        {/* The whole argument in one line, before the inventory that proves it.
+            Reading order is deliberate: count, then worth, then price. The
+            total comes from `valueStack` — the same figure Pricing quotes, so
+            the two sections can never disagree. */}
+        <Reveal className="mt-8">
+          <dl className="grid max-w-2xl grid-cols-3 overflow-hidden rounded-2xl border border-line bg-surface-raised">
+            <Tally label="Modules" value={String(modules.length)} />
+            <Tally label="Total value" value={`${peso(totalValue)}+`} divided />
+            <Tally
+              label="You pay"
+              value={peso(offer.price.founding)}
+              divided
+              accent
+            />
+          </dl>
+        </Reveal>
+
+        <div className="mt-8 space-y-4">
           {modules.map((item, index) => (
             <Reveal key={item.id}>
-              <article className="overflow-hidden rounded-3xl border border-line bg-surface-raised">
+              <article className="group relative overflow-hidden rounded-3xl border border-line bg-surface-raised transition-colors duration-300 hover:border-line-strong">
                 <div
                   className={`grid items-center gap-0 lg:grid-cols-2 ${
                     index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
                   {/* Copy */}
-                  <div className="p-6 sm:p-8 lg:p-10">
+                  <div className="relative overflow-hidden p-6 sm:p-8 lg:p-10">
+                    {/* A catalogue numeral, barely there. It makes "seven
+                        pieces" literal and gives each card a place in the
+                        sequence without spending any colour on it. It lives in
+                        the copy column, not the card, because the columns swap
+                        every other card and the asset panel is opaque. */}
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute -top-4 right-2 select-none font-condensed text-[6rem] font-bold leading-none text-text/[0.05] sm:right-4 sm:text-[8rem]"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
                     {/* The mark says what this module IS, so seven cards stay
                         scannable instead of reading as one wall of text. */}
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-surface-sunken text-accent-text">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-surface-sunken text-accent-text transition-colors duration-300 group-hover:border-brand/50">
                         <Icon name={item.icon} className="h-5 w-5" />
                       </span>
-                      <p className="label-caps text-accent-text">
+                      <p className="label-caps rounded-full border border-brand/35 bg-brand/[0.09] px-3 py-1.5 text-accent-text">
                         {peso(item.value)} value
                       </p>
                     </div>
-                    <h3 className="mt-3 text-2xl font-black leading-[1.1] tracking-[-0.025em] text-text sm:text-3xl">
+                    <h3 className="mt-4 text-2xl font-black leading-[1.1] tracking-[-0.025em] text-text sm:text-3xl">
                       {item.name}
                     </h3>
                     <p className="mt-3.5 text-[0.9375rem] leading-[1.65] text-text-muted">
@@ -133,5 +168,33 @@ export function Modules() {
         <CtaBlock className="mt-12" />
       </Container>
     </Section>
+  );
+}
+
+/** One cell of the tally strip above the inventory. */
+function Tally({
+  label,
+  value,
+  divided = false,
+  accent = false,
+}: {
+  label: string;
+  value: string;
+  divided?: boolean;
+  accent?: boolean;
+}) {
+  return (
+    <div className={`px-3 py-4 sm:px-6 sm:py-5 ${divided ? "border-l border-line" : ""}`}>
+      <dt className="label-caps text-[0.6rem] text-text-dim">{label}</dt>
+      {/* clamp rather than a breakpoint: "₱35,000+" is the longest figure here
+          and it has to survive a 320px phone without clipping. */}
+      <dd
+        className={`tnum mt-1.5 whitespace-nowrap text-[clamp(0.9375rem,4.4vw,1.5rem)] font-black leading-none tracking-[-0.03em] ${
+          accent ? "text-accent-text" : "text-text"
+        }`}
+      >
+        {value}
+      </dd>
+    </div>
   );
 }
