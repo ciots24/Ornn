@@ -25,18 +25,22 @@ export const hero = {
 
 export const outcomes = [
   {
+    icon: "script",
     title: "Generate sales-focused Meta ad copy in minutes",
     body: "Proven script framework 'to mula sa ₱100M+ ad spend. Hindi mo na kailangang magsunog ng budget para matutunan kung ano ang gumagana. Diretso ka na sa winning ads.",
   },
   {
+    icon: "image",
     title: "Create 10 scroll-stopping image ads in one hour",
     body: "Walang designer. Libre pa. Magmumukhang kasing-laki mo ng malalaking brand.",
   },
   {
+    icon: "rocket",
     title: "Launch on a proven ₱300–₱500 per day campaign structure",
     body: "Kaya 'yan ng kahit sino. Ang pinagkaiba? Ito mismo ang exact strategy na nag-close ng 37 clients in two weeks.",
   },
   {
+    icon: "fastForward",
     title: "Skip years of expensive ads trial and error",
     body: "Start with the strategies, frameworks, and lessons we already paid ₱100M+ to discover.",
   },
@@ -180,6 +184,7 @@ export const system = {
 export const modules = [
   {
     id: "offer-gpt",
+    icon: "offer",
     name: "The Grandfather Offer Strategist GPT",
     value: 5000,
     summary:
@@ -203,6 +208,7 @@ export const modules = [
   },
   {
     id: "quick-start",
+    icon: "rocket",
     name: "₱300 Winning Ad Launch System",
     value: 5000,
     summary:
@@ -221,6 +227,7 @@ export const modules = [
   },
   {
     id: "image-gpt",
+    icon: "image",
     name: "Scroll-Stopping Image Ads Strategist GPT",
     value: 7000,
     summary:
@@ -242,6 +249,7 @@ export const modules = [
   },
   {
     id: "script-gpt",
+    icon: "script",
     name: "100M Script Strategist GPT",
     value: 7000,
     summary:
@@ -260,6 +268,7 @@ export const modules = [
   },
   {
     id: "campaign-setup",
+    icon: "blueprint",
     name: "Campaign Structure & Setup Blueprint",
     value: 4000,
     summary:
@@ -283,6 +292,7 @@ export const modules = [
   },
   {
     id: "hooks",
+    icon: "hook",
     name: "100+ Proven Winning Ad Hooks",
     value: 3000,
     summary: "A library of 100+ hooks na proven sa totoong ads.",
@@ -303,6 +313,7 @@ export const modules = [
   },
   {
     id: "video-vault",
+    icon: "video",
     name: "1,500+ Hook Video Vault",
     value: 4000,
     summary: "A vault of 1,500+ scroll-stopping hook videos na pwede mong modelohin.",

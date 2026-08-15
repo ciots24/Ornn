@@ -6,6 +6,7 @@ import { Exhibit } from "@/components/ui/Exhibit";
 import { Heading, ShiftLine } from "@/components/ui/List";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { Icon } from "@/components/ui/Icon";
 import { modules } from "@/content/copy";
 import { peso } from "@/content/offer";
 
@@ -32,9 +33,16 @@ export function Modules() {
                 >
                   {/* Copy */}
                   <div className="p-6 sm:p-8 lg:p-10">
-                    <p className="label-caps text-brand">
-                      {peso(item.value)} value
-                    </p>
+                    {/* The mark says what this module IS, so seven cards stay
+                        scannable instead of reading as one wall of text. */}
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-ink-400 bg-ink-800 text-brand-hi">
+                        <Icon name={item.icon} className="h-5 w-5" />
+                      </span>
+                      <p className="label-caps text-brand">
+                        {peso(item.value)} value
+                      </p>
+                    </div>
                     <h3 className="mt-3 text-2xl font-black leading-[1.1] tracking-[-0.025em] text-paper sm:text-3xl">
                       {item.name}
                     </h3>
