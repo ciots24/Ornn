@@ -10,7 +10,7 @@ import { AdGallery } from "@/components/ui/AdGallery";
 import { Icon } from "@/components/ui/Icon";
 import { VideoRail } from "@/components/ui/VideoRail";
 import { adCreatives } from "@/content/ads";
-import { scriptProofClips } from "@/content/videos";
+import { hookVaultClips, scriptProofClips } from "@/content/videos";
 import { modules } from "@/content/copy";
 import { offer, peso, totalValue } from "@/content/offer";
 
@@ -143,6 +143,16 @@ export function Modules() {
                         <VideoRail
                           clips={scriptProofClips}
                           label="Ads scripted with this GPT"
+                          className="w-full"
+                        />
+                      ) : item.id === "video-vault" && hookVaultClips.length > 0 ? (
+                        /* Three clips out of the vault. The module's promise is
+                           "hooks you can model", so playable reference clips
+                           show what modelling actually means — a grid of
+                           thumbnails would only prove the vault has files. */
+                        <VideoRail
+                          clips={hookVaultClips}
+                          label="Sample hooks from the vault"
                           className="w-full"
                         />
                       ) : "asset" in item ? (

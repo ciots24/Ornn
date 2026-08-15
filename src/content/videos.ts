@@ -37,3 +37,38 @@ export const scriptProofClips: readonly ProofClip[] = [
     note: "A different business entirely, scripted the same way.",
   },
 ];
+
+/**
+ * Sample clips from the 1,500+ Hook Video Vault.
+ *
+ * These are reference material, not ORNN's own ads — the vault is a swipe file
+ * you model, and the module says exactly that. Captions name the *archetype*
+ * rather than describing the footage, because what the buyer is paying for is
+ * the pattern, not these three clips.
+ */
+export const hookVaultClips: readonly ProofClip[] = [
+  {
+    src: "/proof/hook-talking.mp4",
+    poster: "/proof/hook-talking-poster.webp",
+    width: 360,
+    height: 640,
+    caption: "Talking-head open",
+    note: "One person, one phone, one first line. The format most local-business ads win with.",
+  },
+  {
+    src: "/proof/hook-curiosity.mp4",
+    poster: "/proof/hook-curiosity-poster.webp",
+    width: 360,
+    height: 640,
+    caption: "Curiosity open",
+    note: "You keep watching to find out what happens. No product in the first three seconds.",
+  },
+  {
+    src: "/proof/hook-action.mp4",
+    poster: "/proof/hook-action-poster.webp",
+    width: 360,
+    height: 640,
+    caption: "Motion open",
+    note: "Movement in the very first frame — it stops the thumb before the brain reads anything.",
+  },
+];
