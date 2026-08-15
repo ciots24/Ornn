@@ -6,7 +6,9 @@ import { Exhibit } from "@/components/ui/Exhibit";
 import { Heading, ShiftLine } from "@/components/ui/List";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { AdGallery } from "@/components/ui/AdGallery";
 import { Icon } from "@/components/ui/Icon";
+import { adCreatives } from "@/content/ads";
 import { modules } from "@/content/copy";
 import { peso } from "@/content/offer";
 
@@ -83,8 +85,14 @@ export function Modules() {
 
                   {/* Asset */}
                   <div className="border-t border-ink-500 bg-ink-800 p-5 sm:p-7 lg:h-full lg:border-l lg:border-t-0 lg:p-8">
-                    <div className="flex h-full items-center justify-center">
-                      {"asset" in item ? (
+                    <div className="flex h-full w-full items-center justify-center">
+                      {/* The image-ads module shows the ads it actually made —
+                          the module's promise is "10 image ads in an hour", so
+                          ten of them is the proof of that exact claim. Falls
+                          back to the reserved slot until they're imported. */}
+                      {item.id === "image-gpt" && adCreatives.length > 0 ? (
+                        <AdGallery className="w-full" />
+                      ) : "asset" in item ? (
                         <Exhibit
                           image={item.asset}
                           sizes="(min-width: 1024px) 34rem, 92vw"
