@@ -8,7 +8,21 @@ import { testimonials, type Testimonial } from "@/content/copy";
 
 const SLOTS = 3;
 
+/**
+ * Renders nothing until there is a real quote to show.
+ *
+ * The labelled slots below were right for a page still being built, but on a
+ * live page they were the opposite of social proof: a heading promising what
+ * past clients say, followed by three boxes reading "drop a real client quote
+ * here". A visitor reads that as "there are no clients".
+ *
+ * Nothing here is deleted, and nothing needs editing to bring it back — add
+ * an entry to `testimonials` in copy.ts and the whole section returns, slots
+ * and all, for however many are still missing.
+ */
 export function Testimonials() {
+  if (testimonials.length === 0) return null;
+
   const filled = testimonials.slice(0, SLOTS);
   const empty = Math.max(0, SLOTS - filled.length);
 

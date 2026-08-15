@@ -32,6 +32,20 @@ export const metadata: Metadata = {
     siteName: "ORNN",
   },
   robots: { index: true, follow: true },
+  /**
+   * `src/app/favicon.ico` covers the bare /favicon.ico request browsers make
+   * on their own; these cover everything that asks properly — retina tabs,
+   * the iOS home screen, and Android's install prompt. The mark is white on
+   * brand red rather than white on transparent, which would disappear
+   * entirely in a light browser tab.
+   */
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {

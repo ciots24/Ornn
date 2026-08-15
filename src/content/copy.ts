@@ -219,10 +219,13 @@ export const modules = [
       "No agency, freelancer, or VA para makapag-launch ng ad today.",
     ],
     shift: { from: "hindi ako marunong mag-ads", to: "I run my own campaigns" },
-    slot: {
-      ratio: "4 / 3",
-      label: "Quick-start walkthrough",
-      spec: "Screen recording o screenshot ng quick-start dashboard — 1200×900",
+    asset: {
+      src: "/proof/quickstart-dashboard.webp",
+      width: 1448,
+      height: 1086,
+      alt: "The Quick-Start Dashboard walkthrough: five numbered steps — choose your angle, write five copies, create five images, build your ad set, launch and track — totalling under two hours",
+      caption: "Quick-Start Dashboard",
+      note: "Five steps, timed. Under two hours from blank screen to live ad set.",
     },
   },
   {
