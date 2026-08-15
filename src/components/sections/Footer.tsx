@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLockup } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Container";
 import { legal } from "@/content/copy";
 import { offer } from "@/content/offer";
@@ -8,11 +9,7 @@ export function Footer() {
     <footer className="border-t border-line bg-surface pb-28 pt-12 md:pb-14">
       <Container width="wide">
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
-          <p className="label-caps text-text">
-            {offer.brand}
-            <span className="mx-2 text-line-strong">/</span>
-            <span className="text-text-muted">{offer.product}</span>
-          </p>
+          <BrandLockup logoClassName="h-6" />
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
             <a

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
+import { BrandLockup } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Container";
 import { Countdown } from "@/components/ui/Countdown";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -32,9 +33,7 @@ export default function CheckoutPage() {
             href="/"
             className="label-caps -my-2 flex items-center py-3 text-text transition-colors hover:text-accent-text"
           >
-            {offer.brand}
-            <span className="mx-2 text-line-strong">/</span>
-            <span className="text-text-muted">{offer.product}</span>
+            <BrandLockup logoClassName="h-5" priority />
           </Link>
 
           <span className="label-caps ml-auto flex items-center gap-2 text-text-dim">

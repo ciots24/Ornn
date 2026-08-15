@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { CtaButton } from "@/components/ui/CtaButton";
+import { Logo } from "@/components/ui/Logo";
 import { Marker } from "@/components/ui/Marker";
 import { hero } from "@/content/copy";
 import { offer } from "@/content/offer";
@@ -14,6 +15,14 @@ export function Hero() {
       />
 
       <Container width="wide" className="relative">
+        {/* The page used to open straight into the pitch with the brand
+            nowhere on screen. Someone deciding whether to trust a ₱397 charge
+            looks for who is asking first — so the mark goes above the promise,
+            kept small enough not to delay the headline. */}
+        <div className="mb-7 flex justify-center sm:mb-9">
+          <Logo className="h-7 sm:h-8" priority />
+        </div>
+
         <div className="mx-auto max-w-[52rem] text-center">
           <p className="label-caps mx-auto max-w-md text-balance text-text-muted">
             {hero.eyebrow}

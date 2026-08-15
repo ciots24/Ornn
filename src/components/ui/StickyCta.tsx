@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { offer, peso } from "@/content/offer";
+import { BrandLockup } from "./Logo";
 
 /** Roughly the bar's own height — a button hidden behind it is not "on screen". */
 const BAR_CLEARANCE = 96;
@@ -117,11 +118,7 @@ export function StickyCta() {
         inert={!visible}
       >
         <div className="mx-auto flex max-w-[72rem] items-center gap-6 px-6 py-3">
-          <span className="label-caps text-text">
-            {offer.brand}
-            <span className="mx-2 text-line-strong">/</span>
-            <span className="text-text-muted">{offer.product}</span>
-          </span>
+          <BrandLockup logoClassName="h-5" />
 
           <span className="ml-auto flex items-center gap-2.5">
             <span className="label-caps text-text-dim">
