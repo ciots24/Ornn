@@ -1,7 +1,9 @@
 import { Container } from "@/components/ui/Container";
 import { CtaBlock } from "@/components/ui/CtaBlock";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Exhibit } from "@/components/ui/Exhibit";
 import { CheckList, Heading } from "@/components/ui/List";
+import { ProofVideo } from "@/components/ui/ProofVideo";
 import { Prose } from "@/components/ui/Prose";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -35,6 +37,30 @@ export function SystemIntro() {
               </li>
             ))}
           </ul>
+        </Reveal>
+
+        {/* These three claims previously stood on their own. The receipts for
+            two of them now sit directly beneath, where the doubt is. */}
+        <Reveal className="mt-7 grid gap-4 sm:grid-cols-2">
+          <Exhibit
+            image={{
+              src: "/proof/shopify-326k.webp",
+              width: 1864,
+              height: 794,
+              alt: "Store dashboard for February 1–28 showing ₱326,171.05 in total sales, 564 orders and a 3.27% conversion rate, sales up 82%",
+              caption: "₱326,171.05 · Feb 1–28",
+              note: "564 orders, sales up 82%, conversion 3.27%.",
+            }}
+            sizes="(min-width: 640px) 26rem, 92vw"
+          />
+          <ProofVideo
+            src="/proof/sale-18900.mp4"
+            poster="/proof/sale-18900-poster.webp"
+            width={540}
+            height={960}
+            caption="₱18,900 in a day"
+            note="Screen recording. Tap play — it downloads nothing until you do."
+          />
         </Reveal>
 
         <Reveal className="mt-9 space-y-2">
