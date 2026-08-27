@@ -1,26 +1,313 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Ads2Sawa — design tokens
+
+   Every colour here was sampled from the brand's own ad creatives rather than
+   chosen by eye. Two things that came out of that measurement and shaped the
+   system:
+
+   1. The brand red is far more saturated than a typical "material" red, and
+      white on it clears AA (4.73:1) — so it can carry the buttons.
+   2. Half the creatives are light. So surfaces are semantic and flip: a
+      section declares dark or light, and every component inside follows
+      without knowing which it is.
+   ========================================================================== */
+
+@theme {
+  /* --- Brand, measured -------------------------------------------------- */
+  /* The headline red across the creatives (#e31212–#e31c1d). */
+  --color-brand: #e31b1b;
+  /* Red text needs different values per surface: the brand red reads 4.31:1
+     on black (under AA) but 4.57:1 on paper. */
+  --color-brand-hi: #ff4d43;   /* red text on dark  — 6.21:1 */
+  --color-brand-ink: #c81414;  /* red text on light — 6.36:1 */
+  --color-brand-deep: #b40b0b; /* the logo maroon, pressed states */
+  /* Anything sitting ON the red fill. Constant, because the fill is constant —
+     using --text here would put near-black on red inside a light section. */
+  --color-on-brand: #ffffff;
+
+  /* --- Dark ramp -------------------------------------------------------- */
+  /* True black with a hint of warmth, matching the creatives. The old ramp
+     was blue-tinted, which fought the red. */
+  --color-ink-950: #050504;
+  --color-ink-900: #0a0a09;
+  --color-ink-800: #0f0f0e;
+  --color-ink-700: #151513;
+  --color-ink-600: #1c1c19;
+  --color-ink-500: #262622;
+  --color-ink-400: #33332e;
+
+  /* --- Light ramp ------------------------------------------------------- */
+  --color-paper-50: #fbfbfb;
+  --color-paper-100: #f4f4f3;
+  --color-paper-200: #ececea;
+  --color-paper-300: #dededb;
+  --color-paper-400: #c9c9c5;
+
+  --color-paper: #ffffff;
+
+  /* --- Semantic surface tokens ------------------------------------------
+     Components reference these and never the ramps, so a card doesn't need to
+     know which band of the page it landed on. Four steps: the page floor, an
+     alternating band, inset wells, and cards. */
+  --color-surface: #050504;
+  --color-surface-alt: #0a0a09;
+  --color-surface-sunken: #0f0f0e;
+  --color-surface-raised: #151513;
+  --color-line: #262622;
+  --color-line-strong: #33332e;
+  --color-text: #ffffff;
+  --color-text-muted: #a3a3ab;
+  --color-text-dim: #8b8b95;
+  --color-accent-text: #ff4d43;
+
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+  --font-condensed: var(--font-roboto-condensed), var(--font-roboto), sans-serif;
+
+  /* Section rhythm — one knob for the whole page's vertical tempo */
+  --spacing-band: 4.5rem;
+  --spacing-band-lg: 7rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --veil: 255 255 255;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    /* Keeps the fixed mobile CTA bar from covering the footer. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  /* Follows the surface: the light red would vanish against paper. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* --------------------------------------------------------------------------
+   Typography utilities
+   -------------------------------------------------------------------------- */
+
+@utility display-xl {
+  font-weight: 900;
+  font-size: clamp(1.9rem, 7.2vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+@utility display-lg {
+  font-weight: 900;
+  font-size: clamp(1.75rem, 6.4vw, 3.125rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+@utility display-md {
+  font-weight: 900;
+  font-size: clamp(1.375rem, 4.8vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+}
+
+/* Condensed caps — the utility voice: eyebrows, exhibit captions, data chips */
+@utility label-caps {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+
+@utility prose-line {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--color-text-muted);
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   The button. One primary style, used everywhere.
+   Red gradient, inner top highlight, red glow, and a shine that sweeps on hover.
+   -------------------------------------------------------------------------- */
+
+@utility btn-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  /* Top-lit red: the bright creative red falling to the logo maroon. */
+  background-image: linear-gradient(
+    180deg,
+    var(--color-brand-hi) 0%,
+    var(--color-brand) 55%,
+    var(--color-brand-deep) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    inset 0 -1px 0 rgb(0 0 0 / 0.2),
+    0 10px 30px -8px rgb(227 27 27 / 0.55),
+    0 2px 6px -1px rgb(0 0 0 / 0.4);
+  transition:
+    transform 180ms cubic-bezier(0.2, 0.8, 0.3, 1),
+    box-shadow 180ms ease;
+}
+
+@utility btn-primary-hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    inset 0 -1px 0 rgb(0 0 0 / 0.2),
+    0 16px 40px -10px rgb(227 27 27 / 0.7),
+    0 3px 8px -1px rgb(0 0 0 / 0.45);
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.32) 42%,
+    transparent 64%
+  );
+  transform: translateX(-120%);
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.btn-shine:hover::after,
+.btn-shine:focus-visible::after {
+  transform: translateX(120%);
+}
+
+/* --------------------------------------------------------------------------
+   Scroll reveal — one shared mechanism, opted into per element
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Marker annotations — red pen over three numbers, nothing more
+   -------------------------------------------------------------------------- */
+
+/* Paths carry pathLength="1", so one dash rule fits every mark. */
+.marker-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 450ms cubic-bezier(0.65, 0, 0.35, 1)
+    var(--marker-delay, 60ms);
+}
+
+.marker-path[data-shown="true"] {
+  stroke-dashoffset: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal proof rails — swipeable, snapped, with the scrollbar hidden
+   -------------------------------------------------------------------------- */
+
+@utility rail {
+  display: flex;
+  /* Cards hug their own image height — screenshots have wildly different
+     aspect ratios, and stretching them leaves dead space under the short ones. */
+  align-items: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+@utility rail-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* The red bloom behind a section's headline. Used on the three sections that
+   are events rather than steps — the hero, the inventory, the last call — so
+   the page has three points of heat and no more. */
+@utility brand-glow {
+  background: radial-gradient(
+    closest-side,
+    rgb(227 27 27 / 0.13),
+    transparent
+  );
+}
+
+/* Hairline grid used behind the hero and the price reveal. Draws in the
+   surface's own contrast direction, so it stays a whisper on paper too. */
+@utility grid-veil {
+  background-image:
+    linear-gradient(to right, rgb(var(--veil) / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--veil) / 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* NOTE: content-visibility was tried here and removed. With 26 sections of
+   wildly different heights, no single contain-intrinsic-size is close enough —
+   the placeholder heights threw scroll positions off badly enough that reveals
+   never intersected and the page stayed blank. Revisit only with per-section
+   measured heights. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marker-path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+
+  .btn-shine::after {
+    display: none;
+  }
 }

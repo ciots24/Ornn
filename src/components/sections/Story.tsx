@@ -1,0 +1,79 @@
+import { Container } from "@/components/ui/Container";
+import { CtaBlock } from "@/components/ui/CtaBlock";
+import { Exhibit } from "@/components/ui/Exhibit";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { Heading } from "@/components/ui/List";
+import { Prose } from "@/components/ui/Prose";
+import { Reveal } from "@/components/ui/Reveal";
+import { Section } from "@/components/ui/Section";
+import { adSpendDashboard, dealershipLot, story } from "@/content/copy";
+
+export function Story() {
+  return (
+    <Section tone="raised">
+      <Container>
+        <Reveal>
+          <Eyebrow>{story.eyebrow}</Eyebrow>
+          <Heading className="mt-5">{story.title}</Heading>
+        </Reveal>
+
+        <Reveal className="mt-8">
+          <Prose lines={story.partOne} />
+        </Reveal>
+      </Container>
+
+      <Container width="wide" className="my-10">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Reveal>
+            <Exhibit image={dealershipLot} sizes="(min-width: 640px) 34rem, 100vw" />
+          </Reveal>
+          {/* The page's single most load-bearing claim, substantiated. It gets
+              the Exhibit treatment rather than a plain image because the number
+              that matters sits in small type at the bottom of the table — the
+              zoom viewer is what makes it checkable. */}
+          <Reveal delay={90}>
+            <Exhibit image={adSpendDashboard} sizes="(min-width: 640px) 34rem, 100vw" />
+          </Reveal>
+        </div>
+      </Container>
+
+      <Container>
+        <Reveal>
+          <Prose lines={story.partTwo} />
+        </Reveal>
+
+        {/* The three conditions that used to gate winning at Meta ads. */}
+        <Reveal className="mt-7">
+          <ul className="space-y-0 overflow-hidden rounded-2xl border border-line bg-surface-raised">
+            {story.requirements.map((item, index) => (
+              <li
+                key={item}
+                className={`flex items-start gap-3.5 px-5 py-4 ${
+                  index > 0 ? "border-t border-line" : ""
+                }`}
+              >
+                <span
+                  aria-hidden
+                  className="mt-[0.45em] h-px w-4 shrink-0 bg-brand"
+                />
+                <span className="text-[1.0625rem] leading-snug text-text/90">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+        <Reveal className="mt-7">
+          <Prose lines={story.partThree} />
+        </Reveal>
+
+        <Reveal className="mt-9 rounded-2xl border border-brand/35 bg-brand/[0.07] p-6 sm:p-8">
+          <Prose lines={story.pivot} className="text-text/90" />
+        </Reveal>
+
+        <CtaBlock className="mt-10" />
+      </Container>
+    </Section>
+  );
+}

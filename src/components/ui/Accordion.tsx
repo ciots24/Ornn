@@ -1,0 +1,44 @@
+import type { Prose as ProseLines } from "@/content/copy";
+
+/**
+ * Native <details>/<summary>. It is keyboard accessible, screen-reader correct,
+ * and works before JavaScript loads — which matters when most of this traffic
+ * arrives on a phone over mobile data.
+ */
+export function Accordion({
+  items,
+}: {
+  items: readonly { q: string; a: ProseLines }[];
+}) {
+  return (
+    <div className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface-raised">
+      {items.map((item) => (
+        <details key={item.q} className="group">
+          <summary className="flex cursor-pointer list-none items-start gap-4 px-5 py-5 transition-colors duration-200 hover:bg-surface-raised [&::-webkit-details-marker]:hidden">
+            <span className="flex-1 text-[1.0625rem] font-bold leading-snug text-text">
+              {item.q}
+            </span>
+            <span
+              aria-hidden
+              className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-line-strong text-text-muted transition-all duration-200 group-hover:border-brand group-hover:text-brand group-open:rotate-45 group-open:border-brand group-open:bg-brand group-open:text-on-brand"
+            >
+              <svg viewBox="0 0 20 20" fill="none" className="h-3 w-3">
+                <path
+                  d="M10 4v12M4 10h12"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+          </summary>
+          <div className="space-y-3 px-5 pb-5 pr-14 text-[0.9375rem] leading-[1.7] text-text-muted">
+            {item.a.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  );
+}
